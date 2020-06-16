@@ -1,20 +1,2289 @@
-<!--The content below is only a placeholder and can be replaced.-->
-<div style="text-align:center">
-  <h1>
-    Welcome to {{ title }}!
-  </h1>
-  <img width="300" alt="Angular Logo" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNTAgMjUwIj4KICAgIDxwYXRoIGZpbGw9IiNERDAwMzEiIGQ9Ik0xMjUgMzBMMzEuOSA2My4ybDE0LjIgMTIzLjFMMTI1IDIzMGw3OC45LTQzLjcgMTQuMi0xMjMuMXoiIC8+CiAgICA8cGF0aCBmaWxsPSIjQzMwMDJGIiBkPSJNMTI1IDMwdjIyLjItLjFWMjMwbDc4LjktNDMuNyAxNC4yLTEyMy4xTDEyNSAzMHoiIC8+CiAgICA8cGF0aCAgZmlsbD0iI0ZGRkZGRiIgZD0iTTEyNSA1Mi4xTDY2LjggMTgyLjZoMjEuN2wxMS43LTI5LjJoNDkuNGwxMS43IDI5LjJIMTgzTDEyNSA1Mi4xem0xNyA4My4zaC0zNGwxNy00MC45IDE3IDQwLjl6IiAvPgogIDwvc3ZnPg==">
-</div>
-<h2>Here are some links to help you start: </h2>
-<ul>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://angular.io/tutorial">Tour of Heroes</a></h2>
-  </li>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://angular.io/cli">CLI Documentation</a></h2>
-  </li>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://blog.angular.io/">Angular blog</a></h2>
-  </li>
-</ul>
+<div class="container-fluid"
+  style="background-image: url('../assets/background.jpg');background-repeat: no-repeat;background-size: 100% 100%;">
+  <div class="row" style="background-color:rgba(255,255,255,0.8)">
+    <div class="col-xs-12 text-center;">
+      <h3 style="font-family: Montserrat;font-weight:200;">WEATHER APPLICATION</h3>
+    </div>
+  </div>
 
+  <div class="row">
+
+    <div class="col-xs-10 col-md-3 text-center" style="margin: 20px;padding: 0px;height:250px">
+      <img src="../assets/plus.png" style="width: 100px;margin-top: 60px;" (click)="openTextBox('1')" *ngIf="openPlus1">
+      <input type="text" placeholder="Enter city name" name="box1" [(ngModel)]="box1" (keyup.enter)="callApi('1')"
+        *ngIf="openTextBox1" style="width:80%;padding: 10px;margin:5px" />
+      <div
+        style="background-image: url('../assets/haze.jpg');background-size:100%;height:250px;background-repeat:no-repeat;border-radius: 0%;"
+        *ngIf="showTemp1 && boxweatherdata1.weather[0].main == 'Haze'">
+        <div style="margin-top:0px;background-color: rgba(255,255,255,0.5);border-radius: 0%;height: 250px;">
+          <h3 style="font-family:Montserrat;">{{box1}}</h3>
+
+
+          <p style="font-family: Montserrat;"> {{boxweatherdata1.weather[0].main}}</p>
+          <p style="font-family: Montserrat;">Temperature {{boxweatherdata1.main.temp}}</p>
+          <p style="font-family: Montserrat;">Pressure {{boxweatherdata1.main.pressure}}</p>
+          <p style="font-family: Montserrat;">Humidity {{boxweatherdata1.main.humidity}}</p>
+          <button class="btn" (click)="edit(1)" style="font-family: Montserrat;">Edit</button>
+        </div>
+      </div>
+      <div
+        style="background-image: url('../assets/rain.jpeg');background-size:100%;height:250px;border-radius:10%;background-repeat: no-repeat;"
+        *ngIf="showTemp1 && boxweatherdata1.weather[0].main == 'Rain'">
+        <div style="margin-top:0px;background-color: rgba(255,255,255,0.7);border-radius: 0%;height: 250px;">
+
+          <h3 style="font-family:Montserrat;">{{box1}}</h3>
+
+
+          <p style="font-family: Montserrat;">{{boxweatherdata1.weather[0].main}}</p>
+          <p style="font-family: Montserrat;">Temperature {{boxweatherdata1.main.temp}}</p>
+          <p style="font-family: Montserrat;">Pressure {{boxweatherdata1.main.pressure}}</p>
+          <p style="font-family: Montserrat;">Humidity {{boxweatherdata1.main.humidity}}</p>
+
+          <button class="btn" (click)="edit(1)" style="font-family: Montserrat;">Edit</button>
+        </div>
+      </div>
+
+      <div
+        style="background-image: url('../assets/clouds.jpg');background-size:100%;height:250px;border-radius:10%;background-repeat: no-repeat;"
+        *ngIf="showTemp1 && boxweatherdata1.weather[0].main == 'Clouds'">
+        <div style="margin-top:0px;background-color: rgba(255,255,255,0.7);border-radius: 0%;height: 250px;">
+
+          <h3 style="font-family:Montserrat;">{{box1}}</h3>
+
+
+          <p style="font-family: Montserrat;">{{boxweatherdata1.weather[0].main}}</p>
+          <p style="font-family: Montserrat;">Temperature {{boxweatherdata1.main.temp}}</p>
+          <p style="font-family: Montserrat;">Pressure {{boxweatherdata1.main.pressure}}</p>
+          <p style="font-family: Montserrat;">Humidity {{boxweatherdata1.main.humidity}}</p>
+
+          <button class="btn" (click)="edit(1)" style="font-family: Montserrat;">Edit</button>
+        </div>
+      </div>
+      <div
+        style="background-image: url('../assets/thunder.jpg');background-size:100%;height:250px;border-radius:10%;background-repeat: no-repeat;"
+        *ngIf="showTemp1 && boxweatherdata1.weather[0].main == 'Thunderstorm'">
+        <div style="margin-top:0px;background-color: rgba(255,255,255,0.7);border-radius: 0%;height: 250px;">
+
+          <h3 style="font-family:Montserrat;">{{box1}}</h3>
+
+
+          <p style="font-family: Montserrat;"> {{boxweatherdata1.weather[0].main}}</p>
+          <p style="font-family: Montserrat;">Temperature {{boxweatherdata1.main.temp}}</p>
+          <p style="font-family: Montserrat;">Pressure {{boxweatherdata1.main.pressure}}</p>
+          <p style="font-family: Montserrat;">Humidity {{boxweatherdata1.main.humidity}}</p>
+
+          <button class="btn" (click)="edit(1)" style="font-family: Montserrat;">Edit</button>
+        </div>
+      </div>
+      <div
+        style="background-image: url('../assets/drizzle.jpg');background-size:100%;height:250px;border-radius:10%;background-repeat: no-repeat;"
+        *ngIf="showTemp1 && boxweatherdata1.weather[0].main == 'Drizzle'">
+        <div style="margin-top:0px;background-color: rgba(255,255,255,0.7);border-radius: 0%;height: 250px;">
+
+          <h3 style="font-family:Montserrat;">{{box1}}</h3>
+
+
+          <p style="font-family: Montserrat;">{{boxweatherdata1.weather[0].main}}</p>
+          <p style="font-family: Montserrat;">Temperature {{boxweatherdata1.main.temp}}</p>
+          <p style="font-family: Montserrat;">Pressure {{boxweatherdata1.main.pressure}}</p>
+          <p style="font-family: Montserrat;">Humidity {{boxweatherdata1.main.humidity}}</p>
+
+          <button class="btn" (click)="edit(1)" style="font-family: Montserrat;">Edit</button>
+        </div>
+      </div>
+      <div
+        style="background-image: url('../assets/snow.jpg');background-size:100%;height:250px;border-radius:10%;background-repeat: no-repeat;"
+        *ngIf="showTemp1 && boxweatherdata1.weather[0].main == 'Snow'">
+        <div style="margin-top:0px;background-color: rgba(255,255,255,0.7);border-radius: 0%;height: 250px;">
+
+          <h3 style="font-family:Montserrat;">{{box1}}</h3>
+
+
+          <p style="font-family: Montserrat;">{{boxweatherdata1.weather[0].main}}</p>
+          <p style="font-family: Montserrat;">Temperature {{boxweatherdata1.main.temp}}</p>
+          <p style="font-family: Montserrat;">Pressure {{boxweatherdata1.main.pressure}}</p>
+          <p style="font-family: Montserrat;">Humidity {{boxweatherdata1.main.humidity}}</p>
+
+          <button class="btn" (click)="edit(1)" style="font-family: Montserrat;">Edit</button>
+        </div>
+      </div>
+      <div
+        style="background-image: url('../assets/mist.jpg');background-size:100%;height:250px;border-radius:10%;background-repeat: no-repeat;"
+        *ngIf="showTemp1 && boxweatherdata1.weather[0].main == 'Mist'">
+        <div style="margin-top:0px;background-color: rgba(255,255,255,0.7);border-radius: 0%;height: 250px;">
+
+          <h3 style="font-family:Montserrat;">{{box1}}</h3>
+
+
+          <p style="font-family: Montserrat;">{{boxweatherdata1.weather[0].main}}</p>
+          <p style="font-family: Montserrat;">Temperature {{boxweatherdata1.main.temp}}</p>
+          <p style="font-family: Montserrat;">Pressure {{boxweatherdata1.main.pressure}}</p>
+          <p style="font-family: Montserrat;">Humidity {{boxweatherdata1.main.humidity}}</p>
+
+          <button class="btn" (click)="edit(1)" style="font-family: Montserrat;">Edit</button>
+        </div>
+      </div>
+      <div
+        style="background-image: url('../assets/smoke.jpg');background-size:100%;height:250px;border-radius:10%;background-repeat: no-repeat;"
+        *ngIf="showTemp1 && boxweatherdata1.weather[0].main == 'Smoke'">
+        <div style="margin-top:0px;background-color: rgba(255,255,255,0.7);border-radius: 0%;height: 250px;">
+
+          <h3 style="font-family:Montserrat;">{{box1}}</h3>
+
+
+          <p style="font-family: Montserrat;"> {{boxweatherdata1.weather[0].main}}</p>
+          <p style="font-family: Montserrat;">Temperature {{boxweatherdata1.main.temp}}</p>
+          <p style="font-family: Montserrat;">Pressure {{boxweatherdata1.main.pressure}}</p>
+          <p style="font-family: Montserrat;">Humidity {{boxweatherdata1.main.humidity}}</p>
+
+          <button class="btn" (click)="edit(1)" style="font-family: Montserrat;">Edit</button>
+        </div>
+      </div>
+
+      <div
+        style="background-image: url('../assets/dust.jpg');background-size:100%;height:250px;border-radius:10%;background-repeat: no-repeat;"
+        *ngIf="showTemp1 && boxweatherdata1.weather[0].main == 'Dust'">
+        <div style="margin-top:0px;background-color: rgba(255,255,255,0.7);border-radius: 0%;height: 250px;">
+
+          <h3 style="font-family:Montserrat;">{{box1}}</h3>
+
+
+          <p style="font-family: Montserrat;">{{boxweatherdata1.weather[0].main}}</p>
+          <p style="font-family: Montserrat;">Temperature {{boxweatherdata1.main.temp}}</p>
+          <p style="font-family: Montserrat;">Pressure {{boxweatherdata1.main.pressure}}</p>
+          <p style="font-family: Montserrat;">Humidity {{boxweatherdata1.main.humidity}}</p>
+
+          <button class="btn" (click)="edit(1)" style="font-family: Montserrat;">Edit</button>
+        </div>
+      </div>
+      <div
+        style="background-image: url('../assets/fog.jpg');background-size:100%;height:250px;border-radius:10%;background-repeat: no-repeat;"
+        *ngIf="showTemp1 && boxweatherdata1.weather[0].main == 'Fog'">
+        <div style="margin-top:0px">
+
+          <h3 style="font-family:Montserrat;">{{box1}}</h3>
+
+
+          <p style="font-family: Montserrat;">Temperature {{boxweatherdata1.weather[0].main}}</p>
+          <p style="font-family: Montserrat;">Temperature {{boxweatherdata1.main.temp}}</p>
+          <p style="font-family: Montserrat;">Pressure {{boxweatherdata1.main.pressure}}</p>
+          <p style="font-family: Montserrat;">Humidity {{boxweatherdata1.main.humidity}}</p>
+
+          <button class="btn" (click)="edit(1)" style="font-family: Montserrat;">Edit</button>
+        </div>
+      </div>
+      <div
+        style="background-image: url('../assets/sand.jpg');background-size:100%;height:250px;border-radius:10%;background-repeat: no-repeat;"
+        *ngIf="showTemp1 && boxweatherdata1.weather[0].main == 'Sand'">
+        <div style="margin-top:0px;background-color: rgba(255,255,255,0.7);border-radius: 0%;height: 250px;">
+
+          <h3 style="font-family:Montserrat;">{{box1}}</h3>
+
+
+          <p style="font-family: Montserrat;"> {{boxweatherdata1.weather[0].main}}</p>
+          <p style="font-family: Montserrat;">Temperature {{boxweatherdata1.main.temp}}</p>
+          <p style="font-family: Montserrat;">Pressure {{boxweatherdata1.main.pressure}}</p>
+          <p style="font-family: Montserrat;">Humidity {{boxweatherdata1.main.humidity}}</p>
+
+          <button class="btn" (click)="edit(1)" style="font-family: Montserrat;">Edit</button>
+        </div>
+      </div>
+
+      <div
+        style="background-image: url('../assets/ash.jpg');background-size:100%;height:250px;border-radius:10%;background-repeat: no-repeat;"
+        *ngIf="showTemp1 && boxweatherdata1.weather[0].main == 'Ash'">
+        <div style="margin-top:0px;background-color: rgba(255,255,255,0.7);border-radius: 0%;height: 250px;">
+
+          <h3 style="font-family:Montserrat;">{{box1}}</h3>
+
+
+          <p style="font-family: Montserrat;">{{boxweatherdata1.weather[0].main}}</p>
+          <p style="font-family: Montserrat;">Temperature {{boxweatherdata1.main.temp}}</p>
+          <p style="font-family: Montserrat;">Pressure {{boxweatherdata1.main.pressure}}</p>
+          <p style="font-family: Montserrat;">Humidity {{boxweatherdata1.main.humidity}}</p>
+
+          <button class="btn" (click)="edit(1)" style="font-family: Montserrat;">Edit</button>
+        </div>
+      </div>
+
+      <div
+        style="background-image: url('../assets/squall.jpg');background-size:100%;height:250px;border-radius:10%;background-repeat: no-repeat;"
+        *ngIf="showTemp1 && boxweatherdata1.weather[0].main == 'Squall'">
+        <div style="margin-top:0px">
+
+
+          <h3 style="font-family:Montserrat;">{{box1}}</h3>
+
+
+          <p style="font-family: Montserrat;">{{boxweatherdata1.weather[0].main}}</p>
+          <p style="font-family: Montserrat;">Temperature {{boxweatherdata1.main.temp}}</p>
+          <p style="font-family: Montserrat;">Pressure {{boxweatherdata1.main.pressure}}</p>
+          <p style="font-family: Montserrat;">Humidity {{boxweatherdata1.main.humidity}}</p>
+
+          <button class="btn" (click)="edit(1)" style="font-family: Montserrat;">Edit</button>
+        </div>
+      </div>
+      <div
+        style="background-image: url('../assets/tornado.jpg');background-size:100%;height:250px;border-radius:10%;background-repeat: no-repeat;"
+        *ngIf="showTemp1 && boxweatherdata1.weather[0].main == 'Tornado'">
+        <div style="margin-top:0px;background-color: rgba(255,255,255,0.7);border-radius: 0%;height: 250px;">
+
+          <h3 style="font-family:Montserrat;">{{box1}}</h3>
+
+
+          <p style="font-family: Montserrat;"> {{boxweatherdata1.weather[0].main}}</p>
+          <p style="font-family: Montserrat;">Temperature {{boxweatherdata1.main.temp}}</p>
+          <p style="font-family: Montserrat;">Pressure {{boxweatherdata1.main.pressure}}</p>
+          <p style="font-family: Montserrat;">Humidity {{boxweatherdata1.main.humidity}}</p>
+
+          <button class="btn" (click)="edit(1)" style="font-family: Montserrat;">Edit</button>
+        </div>
+      </div>
+
+      <div
+        style="background-image: url('../assets/clear.jpg');background-size:100%;height:250px;border-radius:10%;background-repeat: no-repeat;"
+        *ngIf="showTemp1 && boxweatherdata1.weather[0].main == 'Clear'">
+        <div style="margin-top:0px;background-color: rgba(255,255,255,0.7);border-radius: 0%;height: 250px;">
+
+          <h3 style="font-family:Montserrat;">{{box1}}</h3>
+
+
+          <p style="font-family: Montserrat;"> {{boxweatherdata1.weather[0].main}}</p>
+          <p style="font-family: Montserrat;">Temperature {{boxweatherdata1.main.temp}}</p>
+          <p style="font-family: Montserrat;">Pressure {{boxweatherdata1.main.pressure}}</p>
+          <p style="font-family: Montserrat;">Humidity {{boxweatherdata1.main.humidity}}</p>
+
+          <button class="btn" (click)="edit(1)" style="font-family: Montserrat;">Edit</button>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- second-->
+    <div class="col-xs-10 col-md-3 text-center" style="margin: 20px;padding: 0px;height:250px">
+      <img src="../assets/plus.png" style="width: 100px;margin-top: 60px;" (click)="openTextBox('2')" *ngIf="openPlus2">
+      <input type="text" placeholder="Enter city name" name="box2" [(ngModel)]="box2" (keyup.enter)="callApi('2')"
+        *ngIf="openTextBox2" style="width:80%;padding: 10px;margin:5px" />
+      <div
+        style="background-image: url('../assets/haze.jpg');background-size:100%;height:250px;background-repeat:no-repeat;border-radius: 0%;"
+        *ngIf="showTemp2 && boxweatherdata2.weather[0].main == 'Haze'">
+        <div style="margin-top:0px;background-color: rgba(255,255,255,0.5);border-radius: 0%;height: 250px;">
+          <h3 style="font-family:Montserrat;">{{box2}}</h3>
+
+
+          <p style="font-family: Montserrat;"> {{boxweatherdata2.weather[0].main}}</p>
+          <p style="font-family: Montserrat;">Temperature {{boxweatherdata2.main.temp}}</p>
+          <p style="font-family: Montserrat;">Pressure {{boxweatherdata2.main.pressure}}</p>
+          <p style="font-family: Montserrat;">Humidity {{boxweatherdata2.main.humidity}}</p>
+          <button class="btn" (click)="edit(2)" style="font-family: Montserrat;">Edit</button>
+        </div>
+      </div>
+      <div
+        style="background-image: url('../assets/clouds.jpg');background-size:100%;height:250px;border-radius:10%;background-repeat: no-repeat;"
+        *ngIf="showTemp2 && boxweatherdata2.weather[0].main == 'Clouds'">
+        <div style="margin-top:0px;background-color: rgba(255,255,255,0.7);border-radius: 0%;height: 250px;">
+
+          <h3 style="font-family:Montserrat;">{{box2}}</h3>
+
+
+          <p style="font-family: Montserrat;">{{boxweatherdata2.weather[0].main}}</p>
+          <p style="font-family: Montserrat;">Temperature {{boxweatherdata2.main.temp}}</p>
+          <p style="font-family: Montserrat;">Pressure {{boxweatherdata2.main.pressure}}</p>
+          <p style="font-family: Montserrat;">Humidity {{boxweatherdata2.main.humidity}}</p>
+
+          <button class="btn" (click)="edit(2)" style="font-family: Montserrat;">Edit</button>
+        </div>
+      </div>
+      <div
+        style="background-image: url('../assets/thunder.jpg');background-size:100%;height:250px;border-radius:10%;background-repeat: no-repeat;"
+        *ngIf="showTemp2 && boxweatherdata2.weather[0].main == 'Thunderstorm'">
+        <div style="margin-top:0px;background-color: rgba(255,255,255,0.7);border-radius: 0%;height: 250px;">
+
+          <h3 style="font-family:Montserrat;">{{box2}}</h3>
+
+
+          <p style="font-family: Montserrat;"> {{boxweatherdata2.weather[0].main}}</p>
+          <p style="font-family: Montserrat;">Temperature {{boxweatherdata2.main.temp}}</p>
+          <p style="font-family: Montserrat;">Pressure {{boxweatherdata2.main.pressure}}</p>
+          <p style="font-family: Montserrat;">Humidity {{boxweatherdata2.main.humidity}}</p>
+
+          <button class="btn" (click)="edit(2)" style="font-family: Montserrat;">Edit</button>
+        </div>
+      </div>
+      <div
+        style="background-image: url('../assets/drizzle.jpg');background-size:100%;height:250px;border-radius:10%;background-repeat: no-repeat;"
+        *ngIf="showTemp2 && boxweatherdata2.weather[0].main == 'Drizzle'">
+        <div style="margin-top:0px;background-color: rgba(255,255,255,0.7);border-radius: 0%;height: 250px;">
+
+          <h3 style="font-family:Montserrat;">{{box2}}</h3>
+
+
+          <p style="font-family: Montserrat;">{{boxweatherdata2.weather[0].main}}</p>
+          <p style="font-family: Montserrat;">Temperature {{boxweatherdata2.main.temp}}</p>
+          <p style="font-family: Montserrat;">Pressure {{boxweatherdata2.main.pressure}}</p>
+          <p style="font-family: Montserrat;">Humidity {{boxweatherdata2.main.humidity}}</p>
+
+          <button class="btn" (click)="edit(2)" style="font-family: Montserrat;">Edit</button>
+        </div>
+      </div>
+      <div
+        style="background-image: url('../assets/rain.jpeg');background-size:100%;height:250px;border-radius:10%;background-repeat: no-repeat;"
+        *ngIf="showTemp2 && boxweatherdata2.weather[0].main == 'Rain'">
+        <div style="margin-top:0px;background-color: rgba(255,255,255,0.7);border-radius: 0%;height: 250px;">
+
+          <h3 style="font-family:Montserrat;">{{box2}}</h3>
+
+
+          <p style="font-family: Montserrat;">{{boxweatherdata2.weather[0].main}}</p>
+          <p style="font-family: Montserrat;">Temperature {{boxweatherdata2.main.temp}}</p>
+          <p style="font-family: Montserrat;">Pressure {{boxweatherdata2.main.pressure}}</p>
+          <p style="font-family: Montserrat;">Humidity {{boxweatherdata2.main.humidity}}</p>
+
+          <button class="btn" (click)="edit(2)" style="font-family: Montserrat;">Edit</button>
+        </div>
+      </div>
+
+      <div
+        style="background-image: url('../assets/snow.jpg');background-size:100%;height:250px;border-radius:10%;background-repeat: no-repeat;"
+        *ngIf="showTemp2 && boxweatherdata2.weather[0].main == 'Snow'">
+        <div style="margin-top:0px;background-color: rgba(255,255,255,0.7);border-radius: 0%;height: 250px;">
+
+          <h3 style="font-family:Montserrat;">{{box2}}</h3>
+
+
+          <p style="font-family: Montserrat;">{{boxweatherdata2.weather[0].main}}</p>
+          <p style="font-family: Montserrat;">Temperature {{boxweatherdata2.main.temp}}</p>
+          <p style="font-family: Montserrat;">Pressure {{boxweatherdata2.main.pressure}}</p>
+          <p style="font-family: Montserrat;">Humidity {{boxweatherdata2.main.humidity}}</p>
+
+          <button class="btn" (click)="edit(2)" style="font-family: Montserrat;">Edit</button>
+        </div>
+      </div>
+      <div
+        style="background-image: url('../assets/mist.jpg');background-size:100%;height:250px;border-radius:10%;background-repeat: no-repeat;"
+        *ngIf="showTemp2 && boxweatherdata2.weather[0].main == 'Mist'">
+        <div style="margin-top:0px;background-color: rgba(255,255,255,0.7);border-radius: 0%;height: 250px;">
+
+          <h3 style="font-family:Montserrat;">{{box2}}</h3>
+
+
+          <p style="font-family: Montserrat;">{{boxweatherdata2.weather[0].main}}</p>
+          <p style="font-family: Montserrat;">Temperature {{boxweatherdata2.main.temp}}</p>
+          <p style="font-family: Montserrat;">Pressure {{boxweatherdata2.main.pressure}}</p>
+          <p style="font-family: Montserrat;">Humidity {{boxweatherdata2.main.humidity}}</p>
+
+          <button class="btn" (click)="edit(2)" style="font-family: Montserrat;">Edit</button>
+        </div>
+      </div>
+      <div
+        style="background-image: url('../assets/smoke.jpg');background-size:100%;height:250px;border-radius:10%;background-repeat: no-repeat;"
+        *ngIf="showTemp2 && boxweatherdata2.weather[0].main == 'Smoke'">
+        <div style="margin-top:0px;background-color: rgba(255,255,255,0.7);border-radius: 0%;height: 250px;">
+
+          <h3 style="font-family:Montserrat;">{{box2}}</h3>
+
+
+          <p style="font-family: Montserrat;"> {{boxweatherdata2.weather[0].main}}</p>
+          <p style="font-family: Montserrat;">Temperature {{boxweatherdata2.main.temp}}</p>
+          <p style="font-family: Montserrat;">Pressure {{boxweatherdata2.main.pressure}}</p>
+          <p style="font-family: Montserrat;">Humidity {{boxweatherdata2.main.humidity}}</p>
+
+          <button class="btn" (click)="edit(2)" style="font-family: Montserrat;">Edit</button>
+        </div>
+      </div>
+
+      <div
+        style="background-image: url('../assets/dust.jpg');background-size:100%;height:250px;border-radius:10%;background-repeat: no-repeat;"
+        *ngIf="showTemp2 && boxweatherdata2.weather[0].main == 'Dust'">
+        <div style="margin-top:0px;background-color: rgba(255,255,255,0.7);border-radius: 0%;height: 250px;">
+
+          <h3 style="font-family:Montserrat;">{{box2}}</h3>
+
+
+          <p style="font-family: Montserrat;">{{boxweatherdata2.weather[0].main}}</p>
+          <p style="font-family: Montserrat;">Temperature {{boxweatherdata2.main.temp}}</p>
+          <p style="font-family: Montserrat;">Pressure {{boxweatherdata2.main.pressure}}</p>
+          <p style="font-family: Montserrat;">Humidity {{boxweatherdata2.main.humidity}}</p>
+
+          <button class="btn" (click)="edit(2)" style="font-family: Montserrat;">Edit</button>
+        </div>
+      </div>
+      <div
+        style="background-image: url('../assets/fog.jpg');background-size:100%;height:250px;border-radius:10%;background-repeat: no-repeat;"
+        *ngIf="showTemp2 && boxweatherdata2.weather[0].main == 'Fog'">
+        <div style="margin-top:0px">
+
+          <h3 style="font-family:Montserrat;">{{box2}}</h3>
+
+
+          <p style="font-family: Montserrat;">Temperature {{boxweatherdata2.weather[0].main}}</p>
+          <p style="font-family: Montserrat;">Temperature {{boxweatherdata2.main.temp}}</p>
+          <p style="font-family: Montserrat;">Pressure {{boxweatherdata2.main.pressure}}</p>
+          <p style="font-family: Montserrat;">Humidity {{boxweatherdata2.main.humidity}}</p>
+
+          <button class="btn" (click)="edit(2)" style="font-family: Montserrat;">Edit</button>
+        </div>
+      </div>
+      <div
+        style="background-image: url('../assets/sand.jpg');background-size:100%;height:250px;border-radius:10%;background-repeat: no-repeat;"
+        *ngIf="showTemp2 && boxweatherdata2.weather[0].main == 'Sand'">
+        <div style="margin-top:0px;background-color: rgba(255,255,255,0.7);border-radius: 0%;height: 250px;">
+
+          <h3 style="font-family:Montserrat;">{{box2}}</h3>
+
+
+          <p style="font-family: Montserrat;"> {{boxweatherdata2.weather[0].main}}</p>
+          <p style="font-family: Montserrat;">Temperature {{boxweatherdata2.main.temp}}</p>
+          <p style="font-family: Montserrat;">Pressure {{boxweatherdata2.main.pressure}}</p>
+          <p style="font-family: Montserrat;">Humidity {{boxweatherdata2.main.humidity}}</p>
+
+          <button class="btn" (click)="edit(2)" style="font-family: Montserrat;">Edit</button>
+        </div>
+      </div>
+
+      <div
+        style="background-image: url('../assets/ash.jpg');background-size:100%;height:250px;border-radius:10%;background-repeat: no-repeat;"
+        *ngIf="showTemp2 && boxweatherdata2.weather[0].main == 'Ash'">
+        <div style="margin-top:0px;background-color: rgba(255,255,255,0.7);border-radius: 0%;height: 250px;">
+
+          <h3 style="font-family:Montserrat;">{{box2}}</h3>
+
+
+          <p style="font-family: Montserrat;">{{boxweatherdata2.weather[0].main}}</p>
+          <p style="font-family: Montserrat;">Temperature {{boxweatherdata2.main.temp}}</p>
+          <p style="font-family: Montserrat;">Pressure {{boxweatherdata2.main.pressure}}</p>
+          <p style="font-family: Montserrat;">Humidity {{boxweatherdata2.main.humidity}}</p>
+
+          <button class="btn" (click)="edit(2)" style="font-family: Montserrat;">Edit</button>
+        </div>
+      </div>
+
+      <div
+        style="background-image: url('../assets/squall.jpg');background-size:100%;height:250px;border-radius:10%;background-repeat: no-repeat;"
+        *ngIf="showTemp2 && boxweatherdata2.weather[0].main == 'Squall'">
+        <div style="margin-top:0px">
+
+
+          <h3 style="font-family:Montserrat;">{{box2}}</h3>
+
+
+          <p style="font-family: Montserrat;">{{boxweatherdata2.weather[0].main}}</p>
+          <p style="font-family: Montserrat;">Temperature {{boxweatherdata2.main.temp}}</p>
+          <p style="font-family: Montserrat;">Pressure {{boxweatherdata2.main.pressure}}</p>
+          <p style="font-family: Montserrat;">Humidity {{boxweatherdata2.main.humidity}}</p>
+
+          <button class="btn" (click)="edit(2)" style="font-family: Montserrat;">Edit</button>
+        </div>
+      </div>
+      <div
+        style="background-image: url('../assets/tornado.jpg');background-size:100%;height:250px;border-radius:10%;background-repeat: no-repeat;"
+        *ngIf="showTemp2 && boxweatherdata2.weather[0].main == 'Tornado'">
+        <div style="margin-top:0px;background-color: rgba(255,255,255,0.7);border-radius: 0%;height: 250px;">
+
+          <h3 style="font-family:Montserrat;">{{box2}}</h3>
+
+
+          <p style="font-family: Montserrat;"> {{boxweatherdata2.weather[0].main}}</p>
+          <p style="font-family: Montserrat;">Temperature {{boxweatherdata2.main.temp}}</p>
+          <p style="font-family: Montserrat;">Pressure {{boxweatherdata2.main.pressure}}</p>
+          <p style="font-family: Montserrat;">Humidity {{boxweatherdata2.main.humidity}}</p>
+
+          <button class="btn" (click)="edit(2)" style="font-family: Montserrat;">Edit</button>
+        </div>
+      </div>
+
+      <div
+        style="background-image: url('../assets/clear.jpg');background-size:100%;height:250px;border-radius:10%;background-repeat: no-repeat;"
+        *ngIf="showTemp2 && boxweatherdata2.weather[0].main == 'Clear'">
+        <div style="margin-top:0px;background-color: rgba(255,255,255,0.7);border-radius: 0%;height: 250px;">
+
+          <h3 style="font-family:Montserrat;">{{box2}}</h3>
+
+
+          <p style="font-family: Montserrat;"> {{boxweatherdata2.weather[0].main}}</p>
+          <p style="font-family: Montserrat;">Temperature {{boxweatherdata2.main.temp}}</p>
+          <p style="font-family: Montserrat;">Pressure {{boxweatherdata2.main.pressure}}</p>
+          <p style="font-family: Montserrat;">Humidity {{boxweatherdata2.main.humidity}}</p>
+
+          <button class="btn" (click)="edit(2)" style="font-family: Montserrat;">Edit</button>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- third-->
+    <div class="col-xs-10 col-md-3 text-center" style="margin: 20px;padding: 0px;height:250px">
+      <img src="../assets/plus.png" style="width: 100px;margin-top: 60px;" (click)="openTextBox('3')" *ngIf="openPlus3">
+      <input type="text" placeholder="Enter city name" name="box3" [(ngModel)]="box3" (keyup.enter)="callApi('3')"
+        *ngIf="openTextBox3" style="width:80%;padding: 10px;margin:5px" />
+      <div
+        style="background-image: url('../assets/haze.jpg');background-size:100%;height:250px;background-repeat:no-repeat;border-radius: 0%;"
+        *ngIf="showTemp3 && boxweatherdata3.weather[0].main == 'Haze'">
+        <div style="margin-top:0px;background-color: rgba(255,255,255,0.5);border-radius: 0%;height: 250px;">
+          <h3 style="font-family:Montserrat;">{{box3}}</h3>
+
+
+          <p style="font-family: Montserrat;"> {{boxweatherdata3.weather[0].main}}</p>
+          <p style="font-family: Montserrat;">Temperature {{boxweatherdata3.main.temp}}</p>
+          <p style="font-family: Montserrat;">Pressure {{boxweatherdata3.main.pressure}}</p>
+          <p style="font-family: Montserrat;">Humidity {{boxweatherdata3.main.humidity}}</p>
+          <button class="btn" (click)="edit(3)" style="font-family: Montserrat;">Edit</button>
+        </div>
+      </div>
+      <div
+        style="background-image: url('../assets/clouds.jpg');background-size:100%;height:250px;border-radius:10%;background-repeat: no-repeat;"
+        *ngIf="showTemp3 && boxweatherdata3.weather[0].main == 'Clouds'">
+        <div style="margin-top:0px;background-color: rgba(255,255,255,0.7);border-radius: 0%;height: 250px;">
+
+          <h3 style="font-family:Montserrat;">{{box3}}</h3>
+
+
+          <p style="font-family: Montserrat;">{{boxweatherdata3.weather[0].main}}</p>
+          <p style="font-family: Montserrat;">Temperature {{boxweatherdata3.main.temp}}</p>
+          <p style="font-family: Montserrat;">Pressure {{boxweatherdata3.main.pressure}}</p>
+          <p style="font-family: Montserrat;">Humidity {{boxweatherdata3.main.humidity}}</p>
+
+          <button class="btn" (click)="edit(3)" style="font-family: Montserrat;">Edit</button>
+        </div>
+      </div>
+      <div
+        style="background-image: url('../assets/thunder.jpg');background-size:100%;height:250px;border-radius:10%;background-repeat: no-repeat;"
+        *ngIf="showTemp3 && boxweatherdata3.weather[0].main == 'Thunderstorm'">
+        <div style="margin-top:0px;background-color: rgba(255,255,255,0.7);border-radius: 0%;height: 250px;">
+
+          <h3 style="font-family:Montserrat;">{{box3}}</h3>
+
+
+          <p style="font-family: Montserrat;"> {{boxweatherdata3.weather[0].main}}</p>
+          <p style="font-family: Montserrat;">Temperature {{boxweatherdata3.main.temp}}</p>
+          <p style="font-family: Montserrat;">Pressure {{boxweatherdata3.main.pressure}}</p>
+          <p style="font-family: Montserrat;">Humidity {{boxweatherdata3.main.humidity}}</p>
+
+          <button class="btn" (click)="edit(3)" style="font-family: Montserrat;">Edit</button>
+        </div>
+      </div>
+      <div
+        style="background-image: url('../assets/drizzle.jpg');background-size:100%;height:250px;border-radius:10%;background-repeat: no-repeat;"
+        *ngIf="showTemp3 && boxweatherdata3.weather[0].main == 'Drizzle'">
+        <div style="margin-top:0px;background-color: rgba(255,255,255,0.7);border-radius: 0%;height: 250px;">
+
+          <h3 style="font-family:Montserrat;">{{box3}}</h3>
+
+
+          <p style="font-family: Montserrat;">{{boxweatherdata3.weather[0].main}}</p>
+          <p style="font-family: Montserrat;">Temperature {{boxweatherdata3.main.temp}}</p>
+          <p style="font-family: Montserrat;">Pressure {{boxweatherdata3.main.pressure}}</p>
+          <p style="font-family: Montserrat;">Humidity {{boxweatherdata3.main.humidity}}</p>
+
+          <button class="btn" (click)="edit(3)" style="font-family: Montserrat;">Edit</button>
+        </div>
+      </div>
+      <div
+        style="background-image: url('../assets/rain.jpeg');background-size:100%;height:250px;border-radius:10%;background-repeat: no-repeat;"
+        *ngIf="showTemp3 && boxweatherdata3.weather[0].main == 'Rain'">
+        <div style="margin-top:0px;background-color: rgba(255,255,255,0.7);border-radius: 0%;height: 250px;">
+
+          <h3 style="font-family:Montserrat;">{{box3}}</h3>
+
+
+          <p style="font-family: Montserrat;">{{boxweatherdata3.weather[0].main}}</p>
+          <p style="font-family: Montserrat;">Temperature {{boxweatherdata3.main.temp}}</p>
+          <p style="font-family: Montserrat;">Pressure {{boxweatherdata3.main.pressure}}</p>
+          <p style="font-family: Montserrat;">Humidity {{boxweatherdata3.main.humidity}}</p>
+
+          <button class="btn" (click)="edit(3)" style="font-family: Montserrat;">Edit</button>
+        </div>
+      </div>
+
+      <div
+        style="background-image: url('../assets/snow.jpg');background-size:100%;height:250px;border-radius:10%;background-repeat: no-repeat;"
+        *ngIf="showTemp3 && boxweatherdata3.weather[0].main == 'Snow'">
+        <div style="margin-top:0px;background-color: rgba(255,255,255,0.7);border-radius: 0%;height: 250px;">
+
+          <h3 style="font-family:Montserrat;">{{box3}}</h3>
+
+
+          <p style="font-family: Montserrat;">{{boxweatherdata3.weather[0].main}}</p>
+          <p style="font-family: Montserrat;">Temperature {{boxweatherdata3.main.temp}}</p>
+          <p style="font-family: Montserrat;">Pressure {{boxweatherdata3.main.pressure}}</p>
+          <p style="font-family: Montserrat;">Humidity {{boxweatherdata3.main.humidity}}</p>
+
+          <button class="btn" (click)="edit(3)" style="font-family: Montserrat;">Edit</button>
+        </div>
+      </div>
+      <div
+        style="background-image: url('../assets/mist.jpg');background-size:100%;height:250px;border-radius:10%;background-repeat: no-repeat;"
+        *ngIf="showTemp3 && boxweatherdata3.weather[0].main == 'Mist'">
+        <div style="margin-top:0px;background-color: rgba(255,255,255,0.7);border-radius: 0%;height: 250px;">
+
+          <h3 style="font-family:Montserrat;">{{box3}}</h3>
+
+
+          <p style="font-family: Montserrat;">{{boxweatherdata3.weather[0].main}}</p>
+          <p style="font-family: Montserrat;">Temperature {{boxweatherdata3.main.temp}}</p>
+          <p style="font-family: Montserrat;">Pressure {{boxweatherdata3.main.pressure}}</p>
+          <p style="font-family: Montserrat;">Humidity {{boxweatherdata3.main.humidity}}</p>
+
+          <button class="btn" (click)="edit(3)" style="font-family: Montserrat;">Edit</button>
+        </div>
+      </div>
+      <div
+        style="background-image: url('../assets/smoke.jpg');background-size:100%;height:250px;border-radius:10%;background-repeat: no-repeat;"
+        *ngIf="showTemp3 && boxweatherdata3.weather[0].main == 'Smoke'">
+        <div style="margin-top:0px;background-color: rgba(255,255,255,0.7);border-radius: 0%;height: 250px;">
+
+          <h3 style="font-family:Montserrat;">{{box3}}</h3>
+
+
+          <p style="font-family: Montserrat;"> {{boxweatherdata3.weather[0].main}}</p>
+          <p style="font-family: Montserrat;">Temperature {{boxweatherdata3.main.temp}}</p>
+          <p style="font-family: Montserrat;">Pressure {{boxweatherdata3.main.pressure}}</p>
+          <p style="font-family: Montserrat;">Humidity {{boxweatherdata3.main.humidity}}</p>
+
+          <button class="btn" (click)="edit(3)" style="font-family: Montserrat;">Edit</button>
+        </div>
+      </div>
+
+      <div
+        style="background-image: url('../assets/dust.jpg');background-size:100%;height:250px;border-radius:10%;background-repeat: no-repeat;"
+        *ngIf="showTemp3 && boxweatherdata3.weather[0].main == 'Dust'">
+        <div style="margin-top:0px;background-color: rgba(255,255,255,0.7);border-radius: 0%;height: 250px;">
+
+          <h3 style="font-family:Montserrat;">{{box3}}</h3>
+
+
+          <p style="font-family: Montserrat;">{{boxweatherdata3.weather[0].main}}</p>
+          <p style="font-family: Montserrat;">Temperature {{boxweatherdata3.main.temp}}</p>
+          <p style="font-family: Montserrat;">Pressure {{boxweatherdata3.main.pressure}}</p>
+          <p style="font-family: Montserrat;">Humidity {{boxweatherdata3.main.humidity}}</p>
+
+          <button class="btn" (click)="edit(3)" style="font-family: Montserrat;">Edit</button>
+        </div>
+      </div>
+      <div
+        style="background-image: url('../assets/fog.jpg');background-size:100%;height:250px;border-radius:10%;background-repeat: no-repeat;"
+        *ngIf="showTemp3 && boxweatherdata3.weather[0].main == 'Fog'">
+        <div style="margin-top:0px">
+
+          <h3 style="font-family:Montserrat;">{{box3}}</h3>
+
+
+          <p style="font-family: Montserrat;">Temperature {{boxweatherdata3.weather[0].main}}</p>
+          <p style="font-family: Montserrat;">Temperature {{boxweatherdata3.main.temp}}</p>
+          <p style="font-family: Montserrat;">Pressure {{boxweatherdata3.main.pressure}}</p>
+          <p style="font-family: Montserrat;">Humidity {{boxweatherdata3.main.humidity}}</p>
+
+          <button class="btn" (click)="edit(3)" style="font-family: Montserrat;">Edit</button>
+        </div>
+      </div>
+      <div
+        style="background-image: url('../assets/sand.jpg');background-size:100%;height:250px;border-radius:10%;background-repeat: no-repeat;"
+        *ngIf="showTemp3 && boxweatherdata3.weather[0].main == 'Sand'">
+        <div style="margin-top:0px;background-color: rgba(255,255,255,0.7);border-radius: 0%;height: 250px;">
+
+          <h3 style="font-family:Montserrat;">{{box3}}</h3>
+
+
+          <p style="font-family: Montserrat;"> {{boxweatherdata3.weather[0].main}}</p>
+          <p style="font-family: Montserrat;">Temperature {{boxweatherdata3.main.temp}}</p>
+          <p style="font-family: Montserrat;">Pressure {{boxweatherdata3.main.pressure}}</p>
+          <p style="font-family: Montserrat;">Humidity {{boxweatherdata3.main.humidity}}</p>
+
+          <button class="btn" (click)="edit(3)" style="font-family: Montserrat;">Edit</button>
+        </div>
+      </div>
+
+      <div
+        style="background-image: url('../assets/ash.jpg');background-size:100%;height:250px;border-radius:10%;background-repeat: no-repeat;"
+        *ngIf="showTemp3 && boxweatherdata3.weather[0].main == 'Ash'">
+        <div style="margin-top:0px;background-color: rgba(255,255,255,0.7);border-radius: 0%;height: 250px;">
+
+          <h3 style="font-family:Montserrat;">{{box3}}</h3>
+
+
+          <p style="font-family: Montserrat;">{{boxweatherdata3.weather[0].main}}</p>
+          <p style="font-family: Montserrat;">Temperature {{boxweatherdata3.main.temp}}</p>
+          <p style="font-family: Montserrat;">Pressure {{boxweatherdata3.main.pressure}}</p>
+          <p style="font-family: Montserrat;">Humidity {{boxweatherdata3.main.humidity}}</p>
+
+          <button class="btn" (click)="edit(3)" style="font-family: Montserrat;">Edit</button>
+        </div>
+      </div>
+
+      <div
+        style="background-image: url('../assets/squall.jpg');background-size:100%;height:250px;border-radius:10%;background-repeat: no-repeat;"
+        *ngIf="showTemp3 && boxweatherdata3.weather[0].main == 'Squall'">
+        <div style="margin-top:0px">
+
+
+          <h3 style="font-family:Montserrat;">{{box3}}</h3>
+
+
+          <p style="font-family: Montserrat;">{{boxweatherdata3.weather[0].main}}</p>
+          <p style="font-family: Montserrat;">Temperature {{boxweatherdata3.main.temp}}</p>
+          <p style="font-family: Montserrat;">Pressure {{boxweatherdata3.main.pressure}}</p>
+          <p style="font-family: Montserrat;">Humidity {{boxweatherdata3.main.humidity}}</p>
+
+          <button class="btn" (click)="edit(3)" style="font-family: Montserrat;">Edit</button>
+        </div>
+      </div>
+      <div
+        style="background-image: url('../assets/tornado.jpg');background-size:100%;height:250px;border-radius:10%;background-repeat: no-repeat;"
+        *ngIf="showTemp3 && boxweatherdata3.weather[0].main == 'Tornado'">
+        <div style="margin-top:0px;background-color: rgba(255,255,255,0.7);border-radius: 0%;height: 250px;">
+
+          <h3 style="font-family:Montserrat;">{{box3}}</h3>
+
+
+          <p style="font-family: Montserrat;"> {{boxweatherdata3.weather[0].main}}</p>
+          <p style="font-family: Montserrat;">Temperature {{boxweatherdata3.main.temp}}</p>
+          <p style="font-family: Montserrat;">Pressure {{boxweatherdata3.main.pressure}}</p>
+          <p style="font-family: Montserrat;">Humidity {{boxweatherdata3.main.humidity}}</p>
+
+          <button class="btn" (click)="edit(3)" style="font-family: Montserrat;">Edit</button>
+        </div>
+      </div>
+
+      <div
+        style="background-image: url('../assets/clear.jpg');background-size:100%;height:250px;border-radius:10%;background-repeat: no-repeat;"
+        *ngIf="showTemp3 && boxweatherdata3.weather[0].main == 'Clear'">
+        <div style="margin-top:0px;background-color: rgba(255,255,255,0.7);border-radius: 0%;height: 250px;">
+
+          <h3 style="font-family:Montserrat;">{{box3}}</h3>
+
+
+          <p style="font-family: Montserrat;"> {{boxweatherdata3.weather[0].main}}</p>
+          <p style="font-family: Montserrat;">Temperature {{boxweatherdata3.main.temp}}</p>
+          <p style="font-family: Montserrat;">Pressure {{boxweatherdata3.main.pressure}}</p>
+          <p style="font-family: Montserrat;">Humidity {{boxweatherdata3.main.humidity}}</p>
+
+          <button class="btn" (click)="edit(3)" style="font-family: Montserrat;">Edit</button>
+        </div>
+      </div>
+
+    </div>
+    <!-- fourth-->
+
+    <div class="col-xs-10 col-md-3 text-center" style="margin: 20px;padding: 0px;height:250px">
+      <img src="../assets/plus.png" style="width: 100px;margin-top: 60px;" (click)="openTextBox('4')" *ngIf="openPlus4">
+      <input type="text" placeholder="Enter city name" name="box4" [(ngModel)]="box4" (keyup.enter)="callApi('4')"
+        *ngIf="openTextBox4" style="width:80%;padding: 10px;margin:5px" />
+      <div
+        style="background-image: url('../assets/haze.jpg');background-size:100%;height:250px;background-repeat:no-repeat;border-radius: 0%;"
+        *ngIf="showTemp4 && boxweatherdata4.weather[0].main == 'Haze'">
+        <div style="margin-top:0px;background-color: rgba(255,255,255,0.5);border-radius: 0%;height: 250px;">
+          <h3 style="font-family:Montserrat;">{{box4}}</h3>
+
+
+          <p style="font-family: Montserrat;"> {{boxweatherdata4.weather[0].main}}</p>
+          <p style="font-family: Montserrat;">Temperature {{boxweatherdata4.main.temp}}</p>
+          <p style="font-family: Montserrat;">Pressure {{boxweatherdata4.main.pressure}}</p>
+          <p style="font-family: Montserrat;">Humidity {{boxweatherdata4.main.humidity}}</p>
+          <button class="btn" (click)="edit(4)" style="font-family: Montserrat;">Edit</button>
+        </div>
+      </div>
+      <div
+        style="background-image: url('../assets/clouds.jpg');background-size:100%;height:250px;border-radius:10%;background-repeat: no-repeat;"
+        *ngIf="showTemp4 && boxweatherdata4.weather[0].main == 'Clouds'">
+        <div style="margin-top:0px;background-color: rgba(255,255,255,0.7);border-radius: 0%;height: 250px;">
+
+          <h3 style="font-family:Montserrat;">{{box4}}</h3>
+
+
+          <p style="font-family: Montserrat;">{{boxweatherdata4.weather[0].main}}</p>
+          <p style="font-family: Montserrat;">Temperature {{boxweatherdata4.main.temp}}</p>
+          <p style="font-family: Montserrat;">Pressure {{boxweatherdata4.main.pressure}}</p>
+          <p style="font-family: Montserrat;">Humidity {{boxweatherdata4.main.humidity}}</p>
+
+          <button class="btn" (click)="edit(4)" style="font-family: Montserrat;">Edit</button>
+        </div>
+      </div>
+      <div
+        style="background-image: url('../assets/rain.jpeg');background-size:100%;height:250px;border-radius:10%;background-repeat: no-repeat;"
+        *ngIf="showTemp4 && boxweatherdata4.weather[0].main == 'Rain'">
+        <div style="margin-top:0px;background-color: rgba(255,255,255,0.7);border-radius: 0%;height: 250px;">
+
+          <h3 style="font-family:Montserrat;">{{box4}}</h3>
+
+
+          <p style="font-family: Montserrat;">{{boxweatherdata4.weather[0].main}}</p>
+          <p style="font-family: Montserrat;">Temperature {{boxweatherdata4.main.temp}}</p>
+          <p style="font-family: Montserrat;">Pressure {{boxweatherdata4.main.pressure}}</p>
+          <p style="font-family: Montserrat;">Humidity {{boxweatherdata4.main.humidity}}</p>
+
+          <button class="btn" (click)="edit(4)" style="font-family: Montserrat;">Edit</button>
+        </div>
+      </div>
+
+      <div
+        style="background-image: url('../assets/thunder.jpg');background-size:100%;height:250px;border-radius:10%;background-repeat: no-repeat;"
+        *ngIf="showTemp4 && boxweatherdata4.weather[0].main == 'Thunderstorm'">
+        <div style="margin-top:0px;background-color: rgba(255,255,255,0.7);border-radius: 0%;height: 250px;">
+
+          <h3 style="font-family:Montserrat;">{{box4}}</h3>
+
+
+          <p style="font-family: Montserrat;"> {{boxweatherdata4.weather[0].main}}</p>
+          <p style="font-family: Montserrat;">Temperature {{boxweatherdata4.main.temp}}</p>
+          <p style="font-family: Montserrat;">Pressure {{boxweatherdata4.main.pressure}}</p>
+          <p style="font-family: Montserrat;">Humidity {{boxweatherdata4.main.humidity}}</p>
+
+          <button class="btn" (click)="edit(4)" style="font-family: Montserrat;">Edit</button>
+        </div>
+      </div>
+      <div
+        style="background-image: url('../assets/drizzle.jpg');background-size:100%;height:250px;border-radius:10%;background-repeat: no-repeat;"
+        *ngIf="showTemp4 && boxweatherdata4.weather[0].main == 'Drizzle'">
+        <div style="margin-top:0px;background-color: rgba(255,255,255,0.7);border-radius: 0%;height: 250px;">
+
+          <h3 style="font-family:Montserrat;">{{box4}}</h3>
+
+
+          <p style="font-family: Montserrat;">{{boxweatherdata4.weather[0].main}}</p>
+          <p style="font-family: Montserrat;">Temperature {{boxweatherdata4.main.temp}}</p>
+          <p style="font-family: Montserrat;">Pressure {{boxweatherdata4.main.pressure}}</p>
+          <p style="font-family: Montserrat;">Humidity {{boxweatherdata4.main.humidity}}</p>
+
+          <button class="btn" (click)="edit(4)" style="font-family: Montserrat;">Edit</button>
+        </div>
+      </div>
+      <div
+        style="background-image: url('../assets/snow.jpg');background-size:100%;height:250px;border-radius:10%;background-repeat: no-repeat;"
+        *ngIf="showTemp4 && boxweatherdata4.weather[0].main == 'Snow'">
+        <div style="margin-top:0px;background-color: rgba(255,255,255,0.7);border-radius: 0%;height: 250px;">
+
+          <h3 style="font-family:Montserrat;">{{box4}}</h3>
+
+
+          <p style="font-family: Montserrat;">{{boxweatherdata4.weather[0].main}}</p>
+          <p style="font-family: Montserrat;">Temperature {{boxweatherdata4.main.temp}}</p>
+          <p style="font-family: Montserrat;">Pressure {{boxweatherdata4.main.pressure}}</p>
+          <p style="font-family: Montserrat;">Humidity {{boxweatherdata4.main.humidity}}</p>
+
+          <button class="btn" (click)="edit(4)" style="font-family: Montserrat;">Edit</button>
+        </div>
+      </div>
+      <div
+        style="background-image: url('../assets/mist.jpg');background-size:100%;height:250px;border-radius:10%;background-repeat: no-repeat;"
+        *ngIf="showTemp4 && boxweatherdata4.weather[0].main == 'Mist'">
+        <div style="margin-top:0px;background-color: rgba(255,255,255,0.7);border-radius: 0%;height: 250px;">
+
+          <h3 style="font-family:Montserrat;">{{box4}}</h3>
+
+
+          <p style="font-family: Montserrat;">{{boxweatherdata4.weather[0].main}}</p>
+          <p style="font-family: Montserrat;">Temperature {{boxweatherdata4.main.temp}}</p>
+          <p style="font-family: Montserrat;">Pressure {{boxweatherdata4.main.pressure}}</p>
+          <p style="font-family: Montserrat;">Humidity {{boxweatherdata4.main.humidity}}</p>
+
+          <button class="btn" (click)="edit(4)" style="font-family: Montserrat;">Edit</button>
+        </div>
+      </div>
+      <div
+        style="background-image: url('../assets/smoke.jpg');background-size:100%;height:250px;border-radius:10%;background-repeat: no-repeat;"
+        *ngIf="showTemp4 && boxweatherdata4.weather[0].main == 'Smoke'">
+        <div style="margin-top:0px;background-color: rgba(255,255,255,0.7);border-radius: 0%;height: 250px;">
+
+          <h3 style="font-family:Montserrat;">{{box4}}</h3>
+
+
+          <p style="font-family: Montserrat;"> {{boxweatherdata4.weather[0].main}}</p>
+          <p style="font-family: Montserrat;">Temperature {{boxweatherdata4.main.temp}}</p>
+          <p style="font-family: Montserrat;">Pressure {{boxweatherdata4.main.pressure}}</p>
+          <p style="font-family: Montserrat;">Humidity {{boxweatherdata4.main.humidity}}</p>
+
+          <button class="btn" (click)="edit(4)" style="font-family: Montserrat;">Edit</button>
+        </div>
+      </div>
+
+      <div
+        style="background-image: url('../assets/dust.jpg');background-size:100%;height:250px;border-radius:10%;background-repeat: no-repeat;"
+        *ngIf="showTemp4 && boxweatherdata4.weather[0].main == 'Dust'">
+        <div style="margin-top:0px;background-color: rgba(255,255,255,0.7);border-radius: 0%;height: 250px;">
+
+          <h3 style="font-family:Montserrat;">{{box4}}</h3>
+
+
+          <p style="font-family: Montserrat;">{{boxweatherdata4.weather[0].main}}</p>
+          <p style="font-family: Montserrat;">Temperature {{boxweatherdata4.main.temp}}</p>
+          <p style="font-family: Montserrat;">Pressure {{boxweatherdata4.main.pressure}}</p>
+          <p style="font-family: Montserrat;">Humidity {{boxweatherdata4.main.humidity}}</p>
+
+          <button class="btn" (click)="edit(4)" style="font-family: Montserrat;">Edit</button>
+        </div>
+      </div>
+      <div
+        style="background-image: url('../assets/fog.jpg');background-size:100%;height:250px;border-radius:10%;background-repeat: no-repeat;"
+        *ngIf="showTemp4 && boxweatherdata4.weather[0].main == 'Fog'">
+        <div style="margin-top:0px">
+
+          <h3 style="font-family:Montserrat;">{{box4}}</h3>
+
+
+          <p style="font-family: Montserrat;">Temperature {{boxweatherdata4.weather[0].main}}</p>
+          <p style="font-family: Montserrat;">Temperature {{boxweatherdata4.main.temp}}</p>
+          <p style="font-family: Montserrat;">Pressure {{boxweatherdata4.main.pressure}}</p>
+          <p style="font-family: Montserrat;">Humidity {{boxweatherdata4.main.humidity}}</p>
+
+          <button class="btn" (click)="edit(4)" style="font-family: Montserrat;">Edit</button>
+        </div>
+      </div>
+      <div
+        style="background-image: url('../assets/sand.jpg');background-size:100%;height:250px;border-radius:10%;background-repeat: no-repeat;"
+        *ngIf="showTemp4 && boxweatherdata4.weather[0].main == 'Sand'">
+        <div style="margin-top:0px;background-color: rgba(255,255,255,0.7);border-radius: 0%;height: 250px;">
+
+          <h3 style="font-family:Montserrat;">{{box4}}</h3>
+
+
+          <p style="font-family: Montserrat;"> {{boxweatherdata4.weather[0].main}}</p>
+          <p style="font-family: Montserrat;">Temperature {{boxweatherdata4.main.temp}}</p>
+          <p style="font-family: Montserrat;">Pressure {{boxweatherdata4.main.pressure}}</p>
+          <p style="font-family: Montserrat;">Humidity {{boxweatherdata4.main.humidity}}</p>
+
+          <button class="btn" (click)="edit(4)" style="font-family: Montserrat;">Edit</button>
+        </div>
+      </div>
+
+      <div
+        style="background-image: url('../assets/ash.jpg');background-size:100%;height:250px;border-radius:10%;background-repeat: no-repeat;"
+        *ngIf="showTemp4 && boxweatherdata4.weather[0].main == 'Ash'">
+        <div style="margin-top:0px;background-color: rgba(255,255,255,0.7);border-radius: 0%;height: 250px;">
+
+          <h3 style="font-family:Montserrat;">{{box4}}</h3>
+
+
+          <p style="font-family: Montserrat;">{{boxweatherdata4.weather[0].main}}</p>
+          <p style="font-family: Montserrat;">Temperature {{boxweatherdata4.main.temp}}</p>
+          <p style="font-family: Montserrat;">Pressure {{boxweatherdata4.main.pressure}}</p>
+          <p style="font-family: Montserrat;">Humidity {{boxweatherdata4.main.humidity}}</p>
+
+          <button class="btn" (click)="edit(4)" style="font-family: Montserrat;">Edit</button>
+        </div>
+      </div>
+
+      <div
+        style="background-image: url('../assets/squall.jpg');background-size:100%;height:250px;border-radius:10%;background-repeat: no-repeat;"
+        *ngIf="showTemp4 && boxweatherdata4.weather[0].main == 'Squall'">
+        <div style="margin-top:0px">
+
+
+          <h3 style="font-family:Montserrat;">{{box4}}</h3>
+
+
+          <p style="font-family: Montserrat;">{{boxweatherdata4.weather[0].main}}</p>
+          <p style="font-family: Montserrat;">Temperature {{boxweatherdata4.main.temp}}</p>
+          <p style="font-family: Montserrat;">Pressure {{boxweatherdata4.main.pressure}}</p>
+          <p style="font-family: Montserrat;">Humidity {{boxweatherdata4.main.humidity}}</p>
+
+          <button class="btn" (click)="edit(4)" style="font-family: Montserrat;">Edit</button>
+        </div>
+      </div>
+      <div
+        style="background-image: url('../assets/tornado.jpg');background-size:100%;height:250px;border-radius:10%;background-repeat: no-repeat;"
+        *ngIf="showTemp4 && boxweatherdata4.weather[0].main == 'Tornado'">
+        <div style="margin-top:0px;background-color: rgba(255,255,255,0.7);border-radius: 0%;height: 250px;">
+
+          <h3 style="font-family:Montserrat;">{{box4}}</h3>
+
+
+          <p style="font-family: Montserrat;"> {{boxweatherdata4.weather[0].main}}</p>
+          <p style="font-family: Montserrat;">Temperature {{boxweatherdata4.main.temp}}</p>
+          <p style="font-family: Montserrat;">Pressure {{boxweatherdata4.main.pressure}}</p>
+          <p style="font-family: Montserrat;">Humidity {{boxweatherdata4.main.humidity}}</p>
+
+          <button class="btn" (click)="edit(4)" style="font-family: Montserrat;">Edit</button>
+        </div>
+      </div>
+
+      <div
+        style="background-image: url('../assets/clear.jpg');background-size:100%;height:250px;border-radius:10%;background-repeat: no-repeat;"
+        *ngIf="showTemp4 && boxweatherdata4.weather[0].main == 'Clear'">
+        <div style="margin-top:0px;background-color: rgba(255,255,255,0.7);border-radius: 0%;height: 250px;">
+
+          <h3 style="font-family:Montserrat;">{{box4}}</h3>
+
+
+          <p style="font-family: Montserrat;"> {{boxweatherdata4.weather[0].main}}</p>
+          <p style="font-family: Montserrat;">Temperature {{boxweatherdata4.main.temp}}</p>
+          <p style="font-family: Montserrat;">Pressure {{boxweatherdata4.main.pressure}}</p>
+          <p style="font-family: Montserrat;">Humidity {{boxweatherdata4.main.humidity}}</p>
+
+          <button class="btn" (click)="edit(4)" style="font-family: Montserrat;">Edit</button>
+        </div>
+      </div>
+
+    </div>
+
+    <!--fifth-->
+    <div class="col-xs-10 col-md-3 text-center" style="margin: 20px;padding: 0px;height:250px">
+      <img src="../assets/plus.png" style="width: 100px;margin-top: 60px;" (click)="openTextBox('5')" *ngIf="openPlus5">
+      <input type="text" placeholder="Enter city name" name="box5" [(ngModel)]="box5" (keyup.enter)="callApi('5')"
+        *ngIf="openTextBox5" style="width:80%;padding: 10px;margin:5px" />
+      <div
+        style="background-image: url('../assets/haze.jpg');background-size:100%;height:250px;background-repeat:no-repeat;border-radius: 0%;"
+        *ngIf="showTemp5 && boxweatherdata5.weather[0].main == 'Haze'">
+        <div style="margin-top:0px;background-color: rgba(255,255,255,0.5);border-radius: 0%;height: 250px;">
+          <h3 style="font-family:Montserrat;">{{box5}}</h3>
+
+
+          <p style="font-family: Montserrat;"> {{boxweatherdata5.weather[0].main}}</p>
+          <p style="font-family: Montserrat;">Temperature {{boxweatherdata5.main.temp}}</p>
+          <p style="font-family: Montserrat;">Pressure {{boxweatherdata5.main.pressure}}</p>
+          <p style="font-family: Montserrat;">Humidity {{boxweatherdata5.main.humidity}}</p>
+          <button class="btn" (click)="edit(5)" style="font-family: Montserrat;">Edit</button>
+        </div>
+      </div>
+      <div
+        style="background-image: url('../assets/clouds.jpg');background-size:100%;height:250px;border-radius:10%;background-repeat: no-repeat;"
+        *ngIf="showTemp5 && boxweatherdata5.weather[0].main == 'Clouds'">
+        <div style="margin-top:0px;background-color: rgba(255,255,255,0.7);border-radius: 0%;height: 250px;">
+
+          <h3 style="font-family:Montserrat;">{{box5}}</h3>
+
+
+          <p style="font-family: Montserrat;">{{boxweatherdata5.weather[0].main}}</p>
+          <p style="font-family: Montserrat;">Temperature {{boxweatherdata5.main.temp}}</p>
+          <p style="font-family: Montserrat;">Pressure {{boxweatherdata5.main.pressure}}</p>
+          <p style="font-family: Montserrat;">Humidity {{boxweatherdata5.main.humidity}}</p>
+
+          <button class="btn" (click)="edit(5)" style="font-family: Montserrat;">Edit</button>
+        </div>
+      </div>
+      <div
+        style="background-image: url('../assets/thunder.jpg');background-size:100%;height:250px;border-radius:10%;background-repeat: no-repeat;"
+        *ngIf="showTemp5 && boxweatherdata5.weather[0].main == 'Thunderstorm'">
+        <div style="margin-top:0px;background-color: rgba(255,255,255,0.7);border-radius: 0%;height: 250px;">
+
+          <h3 style="font-family:Montserrat;">{{box5}}</h3>
+
+
+          <p style="font-family: Montserrat;"> {{boxweatherdata5.weather[0].main}}</p>
+          <p style="font-family: Montserrat;">Temperature {{boxweatherdata5.main.temp}}</p>
+          <p style="font-family: Montserrat;">Pressure {{boxweatherdata5.main.pressure}}</p>
+          <p style="font-family: Montserrat;">Humidity {{boxweatherdata5.main.humidity}}</p>
+
+          <button class="btn" (click)="edit(5)" style="font-family: Montserrat;">Edit</button>
+        </div>
+      </div>
+      <div
+        style="background-image: url('../assets/drizzle.jpg');background-size:100%;height:250px;border-radius:10%;background-repeat: no-repeat;"
+        *ngIf="showTemp5 && boxweatherdata5.weather[0].main == 'Drizzle'">
+        <div style="margin-top:0px;background-color: rgba(255,255,255,0.7);border-radius: 0%;height: 250px;">
+
+          <h3 style="font-family:Montserrat;">{{box5}}</h3>
+
+
+          <p style="font-family: Montserrat;">{{boxweatherdata5.weather[0].main}}</p>
+          <p style="font-family: Montserrat;">Temperature {{boxweatherdata5.main.temp}}</p>
+          <p style="font-family: Montserrat;">Pressure {{boxweatherdata5.main.pressure}}</p>
+          <p style="font-family: Montserrat;">Humidity {{boxweatherdata5.main.humidity}}</p>
+
+          <button class="btn" (click)="edit(5)" style="font-family: Montserrat;">Edit</button>
+        </div>
+      </div>
+      <div
+        style="background-image: url('../assets/rain.jpeg');background-size:100%;height:250px;border-radius:10%;background-repeat: no-repeat;"
+        *ngIf="showTemp5 && boxweatherdata5.weather[0].main == 'Rain'">
+        <div style="margin-top:0px;background-color: rgba(255,255,255,0.7);border-radius: 0%;height: 250px;">
+
+          <h3 style="font-family:Montserrat;">{{box5}}</h3>
+
+
+          <p style="font-family: Montserrat;">{{boxweatherdata5.weather[0].main}}</p>
+          <p style="font-family: Montserrat;">Temperature {{boxweatherdata5.main.temp}}</p>
+          <p style="font-family: Montserrat;">Pressure {{boxweatherdata5.main.pressure}}</p>
+          <p style="font-family: Montserrat;">Humidity {{boxweatherdata5.main.humidity}}</p>
+
+          <button class="btn" (click)="edit(5)" style="font-family: Montserrat;">Edit</button>
+        </div>
+      </div>
+
+      <div
+        style="background-image: url('../assets/snow.jpg');background-size:100%;height:250px;border-radius:10%;background-repeat: no-repeat;"
+        *ngIf="showTemp5 && boxweatherdata5.weather[0].main == 'Snow'">
+        <div style="margin-top:0px;background-color: rgba(255,255,255,0.7);border-radius: 0%;height: 250px;">
+
+          <h3 style="font-family:Montserrat;">{{box5}}</h3>
+
+
+          <p style="font-family: Montserrat;">{{boxweatherdata5.weather[0].main}}</p>
+          <p style="font-family: Montserrat;">Temperature {{boxweatherdata5.main.temp}}</p>
+          <p style="font-family: Montserrat;">Pressure {{boxweatherdata5.main.pressure}}</p>
+          <p style="font-family: Montserrat;">Humidity {{boxweatherdata5.main.humidity}}</p>
+
+          <button class="btn" (click)="edit(5)" style="font-family: Montserrat;">Edit</button>
+        </div>
+      </div>
+      <div
+        style="background-image: url('../assets/mist.jpg');background-size:100%;height:250px;border-radius:10%;background-repeat: no-repeat;"
+        *ngIf="showTemp5 && boxweatherdata5.weather[0].main == 'Mist'">
+        <div style="margin-top:0px;background-color: rgba(255,255,255,0.7);border-radius: 0%;height: 250px;">
+
+          <h3 style="font-family:Montserrat;">{{box5}}</h3>
+
+
+          <p style="font-family: Montserrat;">{{boxweatherdata5.weather[0].main}}</p>
+          <p style="font-family: Montserrat;">Temperature {{boxweatherdata5.main.temp}}</p>
+          <p style="font-family: Montserrat;">Pressure {{boxweatherdata5.main.pressure}}</p>
+          <p style="font-family: Montserrat;">Humidity {{boxweatherdata5.main.humidity}}</p>
+
+          <button class="btn" (click)="edit(5)" style="font-family: Montserrat;">Edit</button>
+        </div>
+      </div>
+      <div
+        style="background-image: url('../assets/smoke.jpg');background-size:100%;height:250px;border-radius:10%;background-repeat: no-repeat;"
+        *ngIf="showTemp5 && boxweatherdata5.weather[0].main == 'Smoke'">
+        <div style="margin-top:0px;background-color: rgba(255,255,255,0.7);border-radius: 0%;height: 250px;">
+
+          <h3 style="font-family:Montserrat;">{{box5}}</h3>
+
+
+          <p style="font-family: Montserrat;"> {{boxweatherdata5.weather[0].main}}</p>
+          <p style="font-family: Montserrat;">Temperature {{boxweatherdata5.main.temp}}</p>
+          <p style="font-family: Montserrat;">Pressure {{boxweatherdata5.main.pressure}}</p>
+          <p style="font-family: Montserrat;">Humidity {{boxweatherdata5.main.humidity}}</p>
+
+          <button class="btn" (click)="edit(5)" style="font-family: Montserrat;">Edit</button>
+        </div>
+      </div>
+
+      <div
+        style="background-image: url('../assets/dust.jpg');background-size:100%;height:250px;border-radius:10%;background-repeat: no-repeat;"
+        *ngIf="showTemp5 && boxweatherdata5.weather[0].main == 'Dust'">
+        <div style="margin-top:0px;background-color: rgba(255,255,255,0.7);border-radius: 0%;height: 250px;">
+
+          <h3 style="font-family:Montserrat;">{{box5}}</h3>
+
+
+          <p style="font-family: Montserrat;">{{boxweatherdata5.weather[0].main}}</p>
+          <p style="font-family: Montserrat;">Temperature {{boxweatherdata5.main.temp}}</p>
+          <p style="font-family: Montserrat;">Pressure {{boxweatherdata5.main.pressure}}</p>
+          <p style="font-family: Montserrat;">Humidity {{boxweatherdata5.main.humidity}}</p>
+
+          <button class="btn" (click)="edit(5)" style="font-family: Montserrat;">Edit</button>
+        </div>
+      </div>
+      <div
+        style="background-image: url('../assets/fog.jpg');background-size:100%;height:250px;border-radius:10%;background-repeat: no-repeat;"
+        *ngIf="showTemp5 && boxweatherdata5.weather[0].main == 'Fog'">
+        <div style="margin-top:0px">
+
+          <h3 style="font-family:Montserrat;">{{box5}}</h3>
+
+
+          <p style="font-family: Montserrat;">Temperature {{boxweatherdata5.weather[0].main}}</p>
+          <p style="font-family: Montserrat;">Temperature {{boxweatherdata5.main.temp}}</p>
+          <p style="font-family: Montserrat;">Pressure {{boxweatherdata5.main.pressure}}</p>
+          <p style="font-family: Montserrat;">Humidity {{boxweatherdata5.main.humidity}}</p>
+
+          <button class="btn" (click)="edit(5)" style="font-family: Montserrat;">Edit</button>
+        </div>
+      </div>
+      <div
+        style="background-image: url('../assets/sand.jpg');background-size:100%;height:250px;border-radius:10%;background-repeat: no-repeat;"
+        *ngIf="showTemp5 && boxweatherdata5.weather[0].main == 'Sand'">
+        <div style="margin-top:0px;background-color: rgba(255,255,255,0.7);border-radius: 0%;height: 250px;">
+
+          <h3 style="font-family:Montserrat;">{{box5}}</h3>
+
+
+          <p style="font-family: Montserrat;"> {{boxweatherdata5.weather[0].main}}</p>
+          <p style="font-family: Montserrat;">Temperature {{boxweatherdata5.main.temp}}</p>
+          <p style="font-family: Montserrat;">Pressure {{boxweatherdata5.main.pressure}}</p>
+          <p style="font-family: Montserrat;">Humidity {{boxweatherdata5.main.humidity}}</p>
+
+          <button class="btn" (click)="edit(5)" style="font-family: Montserrat;">Edit</button>
+        </div>
+      </div>
+
+      <div
+        style="background-image: url('../assets/ash.jpg');background-size:100%;height:250px;border-radius:10%;background-repeat: no-repeat;"
+        *ngIf="showTemp5 && boxweatherdata5.weather[0].main == 'Ash'">
+        <div style="margin-top:0px;background-color: rgba(255,255,255,0.7);border-radius: 0%;height: 250px;">
+
+          <h3 style="font-family:Montserrat;">{{box5}}</h3>
+
+
+          <p style="font-family: Montserrat;">{{boxweatherdata5.weather[0].main}}</p>
+          <p style="font-family: Montserrat;">Temperature {{boxweatherdata5.main.temp}}</p>
+          <p style="font-family: Montserrat;">Pressure {{boxweatherdata5.main.pressure}}</p>
+          <p style="font-family: Montserrat;">Humidity {{boxweatherdata5.main.humidity}}</p>
+
+          <button class="btn" (click)="edit(5)" style="font-family: Montserrat;">Edit</button>
+        </div>
+      </div>
+
+      <div
+        style="background-image: url('../assets/squall.jpg');background-size:100%;height:250px;border-radius:10%;background-repeat: no-repeat;"
+        *ngIf="showTemp5 && boxweatherdata5.weather[0].main == 'Squall'">
+        <div style="margin-top:0px">
+
+
+          <h3 style="font-family:Montserrat;">{{box5}}</h3>
+
+
+          <p style="font-family: Montserrat;">{{boxweatherdata5.weather[0].main}}</p>
+          <p style="font-family: Montserrat;">Temperature {{boxweatherdata5.main.temp}}</p>
+          <p style="font-family: Montserrat;">Pressure {{boxweatherdata5.main.pressure}}</p>
+          <p style="font-family: Montserrat;">Humidity {{boxweatherdata5.main.humidity}}</p>
+
+          <button class="btn" (click)="edit(5)" style="font-family: Montserrat;">Edit</button>
+        </div>
+      </div>
+      <div
+        style="background-image: url('../assets/tornado.jpg');background-size:100%;height:250px;border-radius:10%;background-repeat: no-repeat;"
+        *ngIf="showTemp5 && boxweatherdata5.weather[0].main == 'Tornado'">
+        <div style="margin-top:0px;background-color: rgba(255,255,255,0.7);border-radius: 0%;height: 250px;">
+
+          <h3 style="font-family:Montserrat;">{{box5}}</h3>
+
+
+          <p style="font-family: Montserrat;"> {{boxweatherdata5.weather[0].main}}</p>
+          <p style="font-family: Montserrat;">Temperature {{boxweatherdata5.main.temp}}</p>
+          <p style="font-family: Montserrat;">Pressure {{boxweatherdata5.main.pressure}}</p>
+          <p style="font-family: Montserrat;">Humidity {{boxweatherdata5.main.humidity}}</p>
+
+          <button class="btn" (click)="edit(5)" style="font-family: Montserrat;">Edit</button>
+        </div>
+      </div>
+
+      <div
+        style="background-image: url('../assets/clear.jpg');background-size:100%;height:250px;border-radius:10%;background-repeat: no-repeat;"
+        *ngIf="showTemp5 && boxweatherdata5.weather[0].main == 'Clear'">
+        <div style="margin-top:0px;background-color: rgba(255,255,255,0.7);border-radius: 0%;height: 250px;">
+
+          <h3 style="font-family:Montserrat;">{{box5}}</h3>
+
+
+          <p style="font-family: Montserrat;"> {{boxweatherdata5.weather[0].main}}</p>
+          <p style="font-family: Montserrat;">Temperature {{boxweatherdata5.main.temp}}</p>
+          <p style="font-family: Montserrat;">Pressure {{boxweatherdata5.main.pressure}}</p>
+          <p style="font-family: Montserrat;">Humidity {{boxweatherdata5.main.humidity}}</p>
+
+          <button class="btn" (click)="edit(5)" style="font-family: Montserrat;">Edit</button>
+        </div>
+      </div>
+
+    </div>
+    <!--six-->
+
+    <div class="col-xs-10 col-md-3 text-center" style="margin: 20px;padding: 0px;height:250px">
+      <img src="../assets/plus.png" style="width: 100px;margin-top: 60px;" (click)="openTextBox('6')" *ngIf="openPlus6">
+      <input type="text" placeholder="Enter city name" name="box6" [(ngModel)]="box6" (keyup.enter)="callApi('6')"
+        *ngIf="openTextBox6" style="width:80%;padding: 10px;margin:5px" />
+      <div
+        style="background-image: url('../assets/haze.jpg');background-size:100%;height:250px;background-repeat:no-repeat;border-radius: 0%;"
+        *ngIf="showTemp6 && boxweatherdata6.weather[0].main == 'Haze'">
+        <div style="margin-top:0px;background-color: rgba(255,255,255,0.5);border-radius: 0%;height: 250px;">
+          <h3 style="font-family:Montserrat;">{{box6}}</h3>
+
+
+          <p style="font-family: Montserrat;"> {{boxweatherdata6.weather[0].main}}</p>
+          <p style="font-family: Montserrat;">Temperature {{boxweatherdata6.main.temp}}</p>
+          <p style="font-family: Montserrat;">Pressure {{boxweatherdata6.main.pressure}}</p>
+          <p style="font-family: Montserrat;">Humidity {{boxweatherdata6.main.humidity}}</p>
+          <button class="btn" (click)="edit(6)" style="font-family: Montserrat;">Edit</button>
+        </div>
+      </div>
+      <div
+        style="background-image: url('../assets/clouds.jpg');background-size:100%;height:250px;border-radius:10%;background-repeat: no-repeat;"
+        *ngIf="showTemp6 && boxweatherdata6.weather[0].main == 'Clouds'">
+        <div style="margin-top:0px;background-color: rgba(255,255,255,0.7);border-radius: 0%;height: 250px;">
+
+          <h3 style="font-family:Montserrat;">{{box6}}</h3>
+
+
+          <p style="font-family: Montserrat;">{{boxweatherdata6.weather[0].main}}</p>
+          <p style="font-family: Montserrat;">Temperature {{boxweatherdata6.main.temp}}</p>
+          <p style="font-family: Montserrat;">Pressure {{boxweatherdata6.main.pressure}}</p>
+          <p style="font-family: Montserrat;">Humidity {{boxweatherdata6.main.humidity}}</p>
+
+          <button class="btn" (click)="edit(6)" style="font-family: Montserrat;">Edit</button>
+        </div>
+      </div>
+      <div
+        style="background-image: url('../assets/thunder.jpg');background-size:100%;height:250px;border-radius:10%;background-repeat: no-repeat;"
+        *ngIf="showTemp6 && boxweatherdata6.weather[0].main == 'Thunderstorm'">
+        <div style="margin-top:0px;background-color: rgba(255,255,255,0.7);border-radius: 0%;height: 250px;">
+
+          <h3 style="font-family:Montserrat;">{{box6}}</h3>
+
+
+          <p style="font-family: Montserrat;"> {{boxweatherdata6.weather[0].main}}</p>
+          <p style="font-family: Montserrat;">Temperature {{boxweatherdata6.main.temp}}</p>
+          <p style="font-family: Montserrat;">Pressure {{boxweatherdata6.main.pressure}}</p>
+          <p style="font-family: Montserrat;">Humidity {{boxweatherdata6.main.humidity}}</p>
+
+          <button class="btn" (click)="edit(6)" style="font-family: Montserrat;">Edit</button>
+        </div>
+      </div>
+      <div
+        style="background-image: url('../assets/drizzle.jpg');background-size:100%;height:250px;border-radius:10%;background-repeat: no-repeat;"
+        *ngIf="showTemp6 && boxweatherdata6.weather[0].main == 'Drizzle'">
+        <div style="margin-top:0px;background-color: rgba(255,255,255,0.7);border-radius: 0%;height: 250px;">
+
+          <h3 style="font-family:Montserrat;">{{box6}}</h3>
+
+
+          <p style="font-family: Montserrat;">{{boxweatherdata6.weather[0].main}}</p>
+          <p style="font-family: Montserrat;">Temperature {{boxweatherdata6.main.temp}}</p>
+          <p style="font-family: Montserrat;">Pressure {{boxweatherdata6.main.pressure}}</p>
+          <p style="font-family: Montserrat;">Humidity {{boxweatherdata6.main.humidity}}</p>
+
+          <button class="btn" (click)="edit(6)" style="font-family: Montserrat;">Edit</button>
+        </div>
+      </div>
+      <div
+        style="background-image: url('../assets/snow.jpg');background-size:100%;height:250px;border-radius:10%;background-repeat: no-repeat;"
+        *ngIf="showTemp6 && boxweatherdata6.weather[0].main == 'Snow'">
+        <div style="margin-top:0px;background-color: rgba(255,255,255,0.7);border-radius: 0%;height: 250px;">
+
+          <h3 style="font-family:Montserrat;">{{box6}}</h3>
+
+
+          <p style="font-family: Montserrat;">{{boxweatherdata6.weather[0].main}}</p>
+          <p style="font-family: Montserrat;">Temperature {{boxweatherdata6.main.temp}}</p>
+          <p style="font-family: Montserrat;">Pressure {{boxweatherdata6.main.pressure}}</p>
+          <p style="font-family: Montserrat;">Humidity {{boxweatherdata6.main.humidity}}</p>
+
+          <button class="btn" (click)="edit(6)" style="font-family: Montserrat;">Edit</button>
+        </div>
+      </div>
+      <div
+        style="background-image: url('../assets/rain.jpeg');background-size:100%;height:250px;border-radius:10%;background-repeat: no-repeat;"
+        *ngIf="showTemp6 && boxweatherdata6.weather[0].main == 'Rain'">
+        <div style="margin-top:0px;background-color: rgba(255,255,255,0.7);border-radius: 0%;height: 250px;">
+
+          <h3 style="font-family:Montserrat;">{{box6}}</h3>
+
+
+          <p style="font-family: Montserrat;">{{boxweatherdata6.weather[0].main}}</p>
+          <p style="font-family: Montserrat;">Temperature {{boxweatherdata6.main.temp}}</p>
+          <p style="font-family: Montserrat;">Pressure {{boxweatherdata6.main.pressure}}</p>
+          <p style="font-family: Montserrat;">Humidity {{boxweatherdata6.main.humidity}}</p>
+
+          <button class="btn" (click)="edit(6)" style="font-family: Montserrat;">Edit</button>
+        </div>
+      </div>
+
+      <div
+        style="background-image: url('../assets/mist.jpg');background-size:100%;height:250px;border-radius:10%;background-repeat: no-repeat;"
+        *ngIf="showTemp6 && boxweatherdata6.weather[0].main == 'Mist'">
+        <div style="margin-top:0px;background-color: rgba(255,255,255,0.7);border-radius: 0%;height: 250px;">
+
+          <h3 style="font-family:Montserrat;">{{box6}}</h3>
+
+
+          <p style="font-family: Montserrat;">{{boxweatherdata6.weather[0].main}}</p>
+          <p style="font-family: Montserrat;">Temperature {{boxweatherdata6.main.temp}}</p>
+          <p style="font-family: Montserrat;">Pressure {{boxweatherdata6.main.pressure}}</p>
+          <p style="font-family: Montserrat;">Humidity {{boxweatherdata6.main.humidity}}</p>
+
+          <button class="btn" (click)="edit(6)" style="font-family: Montserrat;">Edit</button>
+        </div>
+      </div>
+      <div
+        style="background-image: url('../assets/smoke.jpg');background-size:100%;height:250px;border-radius:10%;background-repeat: no-repeat;"
+        *ngIf="showTemp6 && boxweatherdata6.weather[0].main == 'Smoke'">
+        <div style="margin-top:0px;background-color: rgba(255,255,255,0.7);border-radius: 0%;height: 250px;">
+
+          <h3 style="font-family:Montserrat;">{{box6}}</h3>
+
+
+          <p style="font-family: Montserrat;"> {{boxweatherdata6.weather[0].main}}</p>
+          <p style="font-family: Montserrat;">Temperature {{boxweatherdata6.main.temp}}</p>
+          <p style="font-family: Montserrat;">Pressure {{boxweatherdata6.main.pressure}}</p>
+          <p style="font-family: Montserrat;">Humidity {{boxweatherdata6.main.humidity}}</p>
+
+          <button class="btn" (click)="edit(6)" style="font-family: Montserrat;">Edit</button>
+        </div>
+      </div>
+
+      <div
+        style="background-image: url('../assets/dust.jpg');background-size:100%;height:250px;border-radius:10%;background-repeat: no-repeat;"
+        *ngIf="showTemp6 && boxweatherdata6.weather[0].main == 'Dust'">
+        <div style="margin-top:0px;background-color: rgba(255,255,255,0.7);border-radius: 0%;height: 250px;">
+
+          <h3 style="font-family:Montserrat;">{{box6}}</h3>
+
+
+          <p style="font-family: Montserrat;">{{boxweatherdata6.weather[0].main}}</p>
+          <p style="font-family: Montserrat;">Temperature {{boxweatherdata6.main.temp}}</p>
+          <p style="font-family: Montserrat;">Pressure {{boxweatherdata6.main.pressure}}</p>
+          <p style="font-family: Montserrat;">Humidity {{boxweatherdata6.main.humidity}}</p>
+
+          <button class="btn" (click)="edit(6)" style="font-family: Montserrat;">Edit</button>
+        </div>
+      </div>
+      <div
+        style="background-image: url('../assets/fog.jpg');background-size:100%;height:250px;border-radius:10%;background-repeat: no-repeat;"
+        *ngIf="showTemp6 && boxweatherdata6.weather[0].main == 'Fog'">
+        <div style="margin-top:0px">
+
+          <h3 style="font-family:Montserrat;">{{box6}}</h3>
+
+
+          <p style="font-family: Montserrat;">Temperature {{boxweatherdata6.weather[0].main}}</p>
+          <p style="font-family: Montserrat;">Temperature {{boxweatherdata6.main.temp}}</p>
+          <p style="font-family: Montserrat;">Pressure {{boxweatherdata6.main.pressure}}</p>
+          <p style="font-family: Montserrat;">Humidity {{boxweatherdata6.main.humidity}}</p>
+
+          <button class="btn" (click)="edit(6)" style="font-family: Montserrat;">Edit</button>
+        </div>
+      </div>
+      <div
+        style="background-image: url('../assets/sand.jpg');background-size:100%;height:250px;border-radius:10%;background-repeat: no-repeat;"
+        *ngIf="showTemp6 && boxweatherdata6.weather[0].main == 'Sand'">
+        <div style="margin-top:0px;background-color: rgba(255,255,255,0.7);border-radius: 0%;height: 250px;">
+
+          <h3 style="font-family:Montserrat;">{{box6}}</h3>
+
+
+          <p style="font-family: Montserrat;"> {{boxweatherdata6.weather[0].main}}</p>
+          <p style="font-family: Montserrat;">Temperature {{boxweatherdata6.main.temp}}</p>
+          <p style="font-family: Montserrat;">Pressure {{boxweatherdata6.main.pressure}}</p>
+          <p style="font-family: Montserrat;">Humidity {{boxweatherdata6.main.humidity}}</p>
+
+          <button class="btn" (click)="edit(6)" style="font-family: Montserrat;">Edit</button>
+        </div>
+      </div>
+
+      <div
+        style="background-image: url('../assets/ash.jpg');background-size:100%;height:250px;border-radius:10%;background-repeat: no-repeat;"
+        *ngIf="showTemp6 && boxweatherdata6.weather[0].main == 'Ash'">
+        <div style="margin-top:0px;background-color: rgba(255,255,255,0.7);border-radius: 0%;height: 250px;">
+
+          <h3 style="font-family:Montserrat;">{{box6}}</h3>
+
+
+          <p style="font-family: Montserrat;">{{boxweatherdata6.weather[0].main}}</p>
+          <p style="font-family: Montserrat;">Temperature {{boxweatherdata6.main.temp}}</p>
+          <p style="font-family: Montserrat;">Pressure {{boxweatherdata6.main.pressure}}</p>
+          <p style="font-family: Montserrat;">Humidity {{boxweatherdata6.main.humidity}}</p>
+
+          <button class="btn" (click)="edit(6)" style="font-family: Montserrat;">Edit</button>
+        </div>
+      </div>
+
+      <div
+        style="background-image: url('../assets/squall.jpg');background-size:100%;height:250px;border-radius:10%;background-repeat: no-repeat;"
+        *ngIf="showTemp6 && boxweatherdata6.weather[0].main == 'Squall'">
+        <div style="margin-top:0px">
+
+
+          <h3 style="font-family:Montserrat;">{{box6}}</h3>
+
+
+          <p style="font-family: Montserrat;">{{boxweatherdata6.weather[0].main}}</p>
+          <p style="font-family: Montserrat;">Temperature {{boxweatherdata6.main.temp}}</p>
+          <p style="font-family: Montserrat;">Pressure {{boxweatherdata6.main.pressure}}</p>
+          <p style="font-family: Montserrat;">Humidity {{boxweatherdata6.main.humidity}}</p>
+
+          <button class="btn" (click)="edit(6)" style="font-family: Montserrat;">Edit</button>
+        </div>
+      </div>
+      <div
+        style="background-image: url('../assets/tornado.jpg');background-size:100%;height:250px;border-radius:10%;background-repeat: no-repeat;"
+        *ngIf="showTemp6 && boxweatherdata6.weather[0].main == 'Tornado'">
+        <div style="margin-top:0px;background-color: rgba(255,255,255,0.7);border-radius: 0%;height: 250px;">
+
+          <h3 style="font-family:Montserrat;">{{box6}}</h3>
+
+
+          <p style="font-family: Montserrat;"> {{boxweatherdata6.weather[0].main}}</p>
+          <p style="font-family: Montserrat;">Temperature {{boxweatherdata6.main.temp}}</p>
+          <p style="font-family: Montserrat;">Pressure {{boxweatherdata6.main.pressure}}</p>
+          <p style="font-family: Montserrat;">Humidity {{boxweatherdata6.main.humidity}}</p>
+
+          <button class="btn" (click)="edit(6)" style="font-family: Montserrat;">Edit</button>
+        </div>
+      </div>
+
+      <div
+        style="background-image: url('../assets/clear.jpg');background-size:100%;height:250px;border-radius:10%;background-repeat: no-repeat;"
+        *ngIf="showTemp6 && boxweatherdata6.weather[0].main == 'Clear'">
+        <div style="margin-top:0px;background-color: rgba(255,255,255,0.7);border-radius: 0%;height: 250px;">
+
+          <h3 style="font-family:Montserrat;">{{box6}}</h3>
+
+
+          <p style="font-family: Montserrat;"> {{boxweatherdata6.weather[0].main}}</p>
+          <p style="font-family: Montserrat;">Temperature {{boxweatherdata6.main.temp}}</p>
+          <p style="font-family: Montserrat;">Pressure {{boxweatherdata6.main.pressure}}</p>
+          <p style="font-family: Montserrat;">Humidity {{boxweatherdata6.main.humidity}}</p>
+
+          <button class="btn" (click)="edit(6)" style="font-family: Montserrat;">Edit</button>
+        </div>
+      </div>
+
+    </div>
+
+    <!--seven-->
+    <div class="col-xs-10 col-md-3 text-center" style="margin: 20px;padding: 0px;height:250px">
+      <img src="../assets/plus.png" style="width: 100px;margin-top: 60px;" (click)="openTextBox('7')" *ngIf="openPlus7">
+      <input type="text" placeholder="Enter city name" name="box7" [(ngModel)]="box7" (keyup.enter)="callApi('7')"
+        *ngIf="openTextBox7" style="width:80%;padding: 10px;margin:5px" />
+      <div
+        style="background-image: url('../assets/haze.jpg');background-size:100%;height:250px;background-repeat:no-repeat;border-radius: 0%;"
+        *ngIf="showTemp7 && boxweatherdata7.weather[0].main == 'Haze'">
+        <div style="margin-top:0px;background-color: rgba(255,255,255,0.5);border-radius: 0%;height: 250px;">
+          <h3 style="font-family:Montserrat;">{{box7}}</h3>
+
+
+          <p style="font-family: Montserrat;"> {{boxweatherdata7.weather[0].main}}</p>
+          <p style="font-family: Montserrat;">Temperature {{boxweatherdata7.main.temp}}</p>
+          <p style="font-family: Montserrat;">Pressure {{boxweatherdata7.main.pressure}}</p>
+          <p style="font-family: Montserrat;">Humidity {{boxweatherdata7.main.humidity}}</p>
+          <button class="btn" (click)="edit(7)" style="font-family: Montserrat;">Edit</button>
+        </div>
+      </div>
+      <div
+        style="background-image: url('../assets/clouds.jpg');background-size:100%;height:250px;border-radius:10%;background-repeat: no-repeat;"
+        *ngIf="showTemp7 && boxweatherdata7.weather[0].main == 'Clouds'">
+        <div style="margin-top:0px;background-color: rgba(255,255,255,0.7);border-radius: 0%;height: 250px;">
+
+          <h3 style="font-family:Montserrat;">{{box7}}</h3>
+
+
+          <p style="font-family: Montserrat;">{{boxweatherdata7.weather[0].main}}</p>
+          <p style="font-family: Montserrat;">Temperature {{boxweatherdata7.main.temp}}</p>
+          <p style="font-family: Montserrat;">Pressure {{boxweatherdata7.main.pressure}}</p>
+          <p style="font-family: Montserrat;">Humidity {{boxweatherdata7.main.humidity}}</p>
+
+          <button class="btn" (click)="edit(7)" style="font-family: Montserrat;">Edit</button>
+        </div>
+      </div>
+      <div
+        style="background-image: url('../assets/thunder.jpg');background-size:100%;height:250px;border-radius:10%;background-repeat: no-repeat;"
+        *ngIf="showTemp7 && boxweatherdata7.weather[0].main == 'Thunderstorm'">
+        <div style="margin-top:0px;background-color: rgba(255,255,255,0.7);border-radius: 0%;height: 250px;">
+
+          <h3 style="font-family:Montserrat;">{{box7}}</h3>
+
+
+          <p style="font-family: Montserrat;"> {{boxweatherdata7.weather[0].main}}</p>
+          <p style="font-family: Montserrat;">Temperature {{boxweatherdata7.main.temp}}</p>
+          <p style="font-family: Montserrat;">Pressure {{boxweatherdata7.main.pressure}}</p>
+          <p style="font-family: Montserrat;">Humidity {{boxweatherdata7.main.humidity}}</p>
+
+          <button class="btn" (click)="edit(7)" style="font-family: Montserrat;">Edit</button>
+        </div>
+      </div>
+      <div
+        style="background-image: url('../assets/rain.jpeg');background-size:100%;height:250px;border-radius:10%;background-repeat: no-repeat;"
+        *ngIf="showTemp7 && boxweatherdata7.weather[0].main == 'Rain'">
+        <div style="margin-top:0px;background-color: rgba(255,255,255,0.7);border-radius: 0%;height: 250px;">
+
+          <h3 style="font-family:Montserrat;">{{box7}}</h3>
+
+
+          <p style="font-family: Montserrat;">{{boxweatherdata7.weather[0].main}}</p>
+          <p style="font-family: Montserrat;">Temperature {{boxweatherdata7.main.temp}}</p>
+          <p style="font-family: Montserrat;">Pressure {{boxweatherdata7.main.pressure}}</p>
+          <p style="font-family: Montserrat;">Humidity {{boxweatherdata7.main.humidity}}</p>
+
+          <button class="btn" (click)="edit(7)" style="font-family: Montserrat;">Edit</button>
+        </div>
+      </div>
+
+      <div
+        style="background-image: url('../assets/drizzle.jpg');background-size:100%;height:250px;border-radius:10%;background-repeat: no-repeat;"
+        *ngIf="showTemp7 && boxweatherdata7.weather[0].main == 'Drizzle'">
+        <div style="margin-top:0px;background-color: rgba(255,255,255,0.7);border-radius: 0%;height: 250px;">
+
+          <h3 style="font-family:Montserrat;">{{box7}}</h3>
+
+
+          <p style="font-family: Montserrat;">{{boxweatherdata7.weather[0].main}}</p>
+          <p style="font-family: Montserrat;">Temperature {{boxweatherdata7.main.temp}}</p>
+          <p style="font-family: Montserrat;">Pressure {{boxweatherdata7.main.pressure}}</p>
+          <p style="font-family: Montserrat;">Humidity {{boxweatherdata7.main.humidity}}</p>
+
+          <button class="btn" (click)="edit(7)" style="font-family: Montserrat;">Edit</button>
+        </div>
+      </div>
+      <div
+        style="background-image: url('../assets/snow.jpg');background-size:100%;height:250px;border-radius:10%;background-repeat: no-repeat;"
+        *ngIf="showTemp7 && boxweatherdata7.weather[0].main == 'Snow'">
+        <div style="margin-top:0px;background-color: rgba(255,255,255,0.7);border-radius: 0%;height: 250px;">
+
+          <h3 style="font-family:Montserrat;">{{box7}}</h3>
+
+
+          <p style="font-family: Montserrat;">{{boxweatherdata7.weather[0].main}}</p>
+          <p style="font-family: Montserrat;">Temperature {{boxweatherdata7.main.temp}}</p>
+          <p style="font-family: Montserrat;">Pressure {{boxweatherdata7.main.pressure}}</p>
+          <p style="font-family: Montserrat;">Humidity {{boxweatherdata7.main.humidity}}</p>
+
+          <button class="btn" (click)="edit(7)" style="font-family: Montserrat;">Edit</button>
+        </div>
+      </div>
+      <div
+        style="background-image: url('../assets/mist.jpg');background-size:100%;height:250px;border-radius:10%;background-repeat: no-repeat;"
+        *ngIf="showTemp7 && boxweatherdata7.weather[0].main == 'Mist'">
+        <div style="margin-top:0px;background-color: rgba(255,255,255,0.7);border-radius: 0%;height: 250px;">
+
+          <h3 style="font-family:Montserrat;">{{box7}}</h3>
+
+
+          <p style="font-family: Montserrat;">{{boxweatherdata7.weather[0].main}}</p>
+          <p style="font-family: Montserrat;">Temperature {{boxweatherdata7.main.temp}}</p>
+          <p style="font-family: Montserrat;">Pressure {{boxweatherdata7.main.pressure}}</p>
+          <p style="font-family: Montserrat;">Humidity {{boxweatherdata7.main.humidity}}</p>
+
+          <button class="btn" (click)="edit(7)" style="font-family: Montserrat;">Edit</button>
+        </div>
+      </div>
+      <div
+        style="background-image: url('../assets/smoke.jpg');background-size:100%;height:250px;border-radius:10%;background-repeat: no-repeat;"
+        *ngIf="showTemp7 && boxweatherdata7.weather[0].main == 'Smoke'">
+        <div style="margin-top:0px;background-color: rgba(255,255,255,0.7);border-radius: 0%;height: 250px;">
+
+          <h3 style="font-family:Montserrat;">{{box7}}</h3>
+
+
+          <p style="font-family: Montserrat;"> {{boxweatherdata7.weather[0].main}}</p>
+          <p style="font-family: Montserrat;">Temperature {{boxweatherdata7.main.temp}}</p>
+          <p style="font-family: Montserrat;">Pressure {{boxweatherdata7.main.pressure}}</p>
+          <p style="font-family: Montserrat;">Humidity {{boxweatherdata7.main.humidity}}</p>
+
+          <button class="btn" (click)="edit(7)" style="font-family: Montserrat;">Edit</button>
+        </div>
+      </div>
+
+      <div
+        style="background-image: url('../assets/dust.jpg');background-size:100%;height:250px;border-radius:10%;background-repeat: no-repeat;"
+        *ngIf="showTemp7 && boxweatherdata7.weather[0].main == 'Dust'">
+        <div style="margin-top:0px;background-color: rgba(255,255,255,0.7);border-radius: 0%;height: 250px;">
+
+          <h3 style="font-family:Montserrat;">{{box7}}</h3>
+
+
+          <p style="font-family: Montserrat;">{{boxweatherdata7.weather[0].main}}</p>
+          <p style="font-family: Montserrat;">Temperature {{boxweatherdata7.main.temp}}</p>
+          <p style="font-family: Montserrat;">Pressure {{boxweatherdata7.main.pressure}}</p>
+          <p style="font-family: Montserrat;">Humidity {{boxweatherdata7.main.humidity}}</p>
+
+          <button class="btn" (click)="edit(7)" style="font-family: Montserrat;">Edit</button>
+        </div>
+      </div>
+      <div
+        style="background-image: url('../assets/fog.jpg');background-size:100%;height:250px;border-radius:10%;background-repeat: no-repeat;"
+        *ngIf="showTemp7 && boxweatherdata7.weather[0].main == 'Fog'">
+        <div style="margin-top:0px">
+
+          <h3 style="font-family:Montserrat;">{{box7}}</h3>
+
+
+          <p style="font-family: Montserrat;">Temperature {{boxweatherdata7.weather[0].main}}</p>
+          <p style="font-family: Montserrat;">Temperature {{boxweatherdata7.main.temp}}</p>
+          <p style="font-family: Montserrat;">Pressure {{boxweatherdata7.main.pressure}}</p>
+          <p style="font-family: Montserrat;">Humidity {{boxweatherdata7.main.humidity}}</p>
+
+          <button class="btn" (click)="edit(7)" style="font-family: Montserrat;">Edit</button>
+        </div>
+      </div>
+      <div
+        style="background-image: url('../assets/sand.jpg');background-size:100%;height:250px;border-radius:10%;background-repeat: no-repeat;"
+        *ngIf="showTemp7 && boxweatherdata7.weather[0].main == 'Sand'">
+        <div style="margin-top:0px;background-color: rgba(255,255,255,0.7);border-radius: 0%;height: 250px;">
+
+          <h3 style="font-family:Montserrat;">{{box7}}</h3>
+
+
+          <p style="font-family: Montserrat;"> {{boxweatherdata7.weather[0].main}}</p>
+          <p style="font-family: Montserrat;">Temperature {{boxweatherdata7.main.temp}}</p>
+          <p style="font-family: Montserrat;">Pressure {{boxweatherdata7.main.pressure}}</p>
+          <p style="font-family: Montserrat;">Humidity {{boxweatherdata7.main.humidity}}</p>
+
+          <button class="btn" (click)="edit(7)" style="font-family: Montserrat;">Edit</button>
+        </div>
+      </div>
+
+      <div
+        style="background-image: url('../assets/ash.jpg');background-size:100%;height:250px;border-radius:10%;background-repeat: no-repeat;"
+        *ngIf="showTemp7 && boxweatherdata7.weather[0].main == 'Ash'">
+        <div style="margin-top:0px;background-color: rgba(255,255,255,0.7);border-radius: 0%;height: 250px;">
+
+          <h3 style="font-family:Montserrat;">{{box7}}</h3>
+
+
+          <p style="font-family: Montserrat;">{{boxweatherdata7.weather[0].main}}</p>
+          <p style="font-family: Montserrat;">Temperature {{boxweatherdata7.main.temp}}</p>
+          <p style="font-family: Montserrat;">Pressure {{boxweatherdata7.main.pressure}}</p>
+          <p style="font-family: Montserrat;">Humidity {{boxweatherdata7.main.humidity}}</p>
+
+          <button class="btn" (click)="edit(7)" style="font-family: Montserrat;">Edit</button>
+        </div>
+      </div>
+
+      <div
+        style="background-image: url('../assets/squall.jpg');background-size:100%;height:250px;border-radius:10%;background-repeat: no-repeat;"
+        *ngIf="showTemp7 && boxweatherdata7.weather[0].main == 'Squall'">
+        <div style="margin-top:0px">
+
+
+          <h3 style="font-family:Montserrat;">{{box7}}</h3>
+
+
+          <p style="font-family: Montserrat;">{{boxweatherdata7.weather[0].main}}</p>
+          <p style="font-family: Montserrat;">Temperature {{boxweatherdata7.main.temp}}</p>
+          <p style="font-family: Montserrat;">Pressure {{boxweatherdata7.main.pressure}}</p>
+          <p style="font-family: Montserrat;">Humidity {{boxweatherdata7.main.humidity}}</p>
+
+          <button class="btn" (click)="edit(7)" style="font-family: Montserrat;">Edit</button>
+        </div>
+      </div>
+      <div
+        style="background-image: url('../assets/tornado.jpg');background-size:100%;height:250px;border-radius:10%;background-repeat: no-repeat;"
+        *ngIf="showTemp7 && boxweatherdata7.weather[0].main == 'Tornado'">
+        <div style="margin-top:0px;background-color: rgba(255,255,255,0.7);border-radius: 0%;height: 250px;">
+
+          <h3 style="font-family:Montserrat;">{{box7}}</h3>
+
+
+          <p style="font-family: Montserrat;"> {{boxweatherdata7.weather[0].main}}</p>
+          <p style="font-family: Montserrat;">Temperature {{boxweatherdata7.main.temp}}</p>
+          <p style="font-family: Montserrat;">Pressure {{boxweatherdata7.main.pressure}}</p>
+          <p style="font-family: Montserrat;">Humidity {{boxweatherdata7.main.humidity}}</p>
+
+          <button class="btn" (click)="edit(7)" style="font-family: Montserrat;">Edit</button>
+        </div>
+      </div>
+
+      <div
+        style="background-image: url('../assets/clear.jpg');background-size:100%;height:250px;border-radius:10%;background-repeat: no-repeat;"
+        *ngIf="showTemp7 && boxweatherdata7.weather[0].main == 'Clear'">
+        <div style="margin-top:0px;background-color: rgba(255,255,255,0.7);border-radius: 0%;height: 250px;">
+
+          <h3 style="font-family:Montserrat;">{{box7}}</h3>
+
+
+          <p style="font-family: Montserrat;"> {{boxweatherdata7.weather[0].main}}</p>
+          <p style="font-family: Montserrat;">Temperature {{boxweatherdata7.main.temp}}</p>
+          <p style="font-family: Montserrat;">Pressure {{boxweatherdata7.main.pressure}}</p>
+          <p style="font-family: Montserrat;">Humidity {{boxweatherdata7.main.humidity}}</p>
+
+          <button class="btn" (click)="edit(7)" style="font-family: Montserrat;">Edit</button>
+        </div>
+      </div>
+
+    </div>
+
+    <!--eight-->
+
+    <div class="col-xs-10 col-md-3 text-center" style="margin: 20px;padding: 0px;height:250px">
+      <img src="../assets/plus.png" style="width: 100px;margin-top: 60px;" (click)="openTextBox('8')" *ngIf="openPlus8">
+      <input type="text" placeholder="Enter city name" name="box8" [(ngModel)]="box8" (keyup.enter)="callApi('8')"
+        *ngIf="openTextBox8" style="width:80%;padding: 10px;margin:5px" />
+      <div
+        style="background-image: url('../assets/haze.jpg');background-size:100%;height:250px;background-repeat:no-repeat;border-radius: 0%;"
+        *ngIf="showTemp8 && boxweatherdata8.weather[0].main == 'Haze'">
+        <div style="margin-top:0px;background-color: rgba(255,255,255,0.5);border-radius: 0%;height: 250px;">
+          <h3 style="font-family:Montserrat;">{{box8}}</h3>
+
+
+          <p style="font-family: Montserrat;"> {{boxweatherdata8.weather[0].main}}</p>
+          <p style="font-family: Montserrat;">Temperature {{boxweatherdata8.main.temp}}</p>
+          <p style="font-family: Montserrat;">Pressure {{boxweatherdata8.main.pressure}}</p>
+          <p style="font-family: Montserrat;">Humidity {{boxweatherdata8.main.humidity}}</p>
+          <button class="btn" (click)="edit(8)" style="font-family: Montserrat;">Edit</button>
+        </div>
+      </div>
+      <div
+        style="background-image: url('../assets/clouds.jpg');background-size:100%;height:250px;border-radius:10%;background-repeat: no-repeat;"
+        *ngIf="showTemp8 && boxweatherdata8.weather[0].main == 'Clouds'">
+        <div style="margin-top:0px;background-color: rgba(255,255,255,0.7);border-radius: 0%;height: 250px;">
+
+          <h3 style="font-family:Montserrat;">{{box8}}</h3>
+
+
+          <p style="font-family: Montserrat;">{{boxweatherdata8.weather[0].main}}</p>
+          <p style="font-family: Montserrat;">Temperature {{boxweatherdata8.main.temp}}</p>
+          <p style="font-family: Montserrat;">Pressure {{boxweatherdata8.main.pressure}}</p>
+          <p style="font-family: Montserrat;">Humidity {{boxweatherdata8.main.humidity}}</p>
+
+          <button class="btn" (click)="edit(8)" style="font-family: Montserrat;">Edit</button>
+        </div>
+      </div>
+      <div
+        style="background-image: url('../assets/thunder.jpg');background-size:100%;height:250px;border-radius:10%;background-repeat: no-repeat;"
+        *ngIf="showTemp8 && boxweatherdata8.weather[0].main == 'Thunderstorm'">
+        <div style="margin-top:0px;background-color: rgba(255,255,255,0.7);border-radius: 0%;height: 250px;">
+
+          <h3 style="font-family:Montserrat;">{{box8}}</h3>
+
+
+          <p style="font-family: Montserrat;"> {{boxweatherdata8.weather[0].main}}</p>
+          <p style="font-family: Montserrat;">Temperature {{boxweatherdata8.main.temp}}</p>
+          <p style="font-family: Montserrat;">Pressure {{boxweatherdata8.main.pressure}}</p>
+          <p style="font-family: Montserrat;">Humidity {{boxweatherdata8.main.humidity}}</p>
+
+          <button class="btn" (click)="edit(8)" style="font-family: Montserrat;">Edit</button>
+        </div>
+      </div>
+      <div
+        style="background-image: url('../assets/rain.jpeg');background-size:100%;height:250px;border-radius:10%;background-repeat: no-repeat;"
+        *ngIf="showTemp8 && boxweatherdata8.weather[0].main == 'Rain'">
+        <div style="margin-top:0px;background-color: rgba(255,255,255,0.7);border-radius: 0%;height: 250px;">
+
+          <h3 style="font-family:Montserrat;">{{box8}}</h3>
+
+
+          <p style="font-family: Montserrat;">{{boxweatherdata8.weather[0].main}}</p>
+          <p style="font-family: Montserrat;">Temperature {{boxweatherdata8.main.temp}}</p>
+          <p style="font-family: Montserrat;">Pressure {{boxweatherdata8.main.pressure}}</p>
+          <p style="font-family: Montserrat;">Humidity {{boxweatherdata8.main.humidity}}</p>
+
+          <button class="btn" (click)="edit(8)" style="font-family: Montserrat;">Edit</button>
+        </div>
+      </div>
+
+      <div
+        style="background-image: url('../assets/drizzle.jpg');background-size:100%;height:250px;border-radius:10%;background-repeat: no-repeat;"
+        *ngIf="showTemp8 && boxweatherdata8.weather[0].main == 'Drizzle'">
+        <div style="margin-top:0px;background-color: rgba(255,255,255,0.7);border-radius: 0%;height: 250px;">
+
+          <h3 style="font-family:Montserrat;">{{box8}}</h3>
+
+
+          <p style="font-family: Montserrat;">{{boxweatherdata8.weather[0].main}}</p>
+          <p style="font-family: Montserrat;">Temperature {{boxweatherdata8.main.temp}}</p>
+          <p style="font-family: Montserrat;">Pressure {{boxweatherdata8.main.pressure}}</p>
+          <p style="font-family: Montserrat;">Humidity {{boxweatherdata8.main.humidity}}</p>
+
+          <button class="btn" (click)="edit(8)" style="font-family: Montserrat;">Edit</button>
+        </div>
+      </div>
+      <div
+        style="background-image: url('../assets/snow.jpg');background-size:100%;height:250px;border-radius:10%;background-repeat: no-repeat;"
+        *ngIf="showTemp8 && boxweatherdata8.weather[0].main == 'Snow'">
+        <div style="margin-top:0px;background-color: rgba(255,255,255,0.7);border-radius: 0%;height: 250px;">
+
+          <h3 style="font-family:Montserrat;">{{box8}}</h3>
+
+
+          <p style="font-family: Montserrat;">{{boxweatherdata8.weather[0].main}}</p>
+          <p style="font-family: Montserrat;">Temperature {{boxweatherdata8.main.temp}}</p>
+          <p style="font-family: Montserrat;">Pressure {{boxweatherdata8.main.pressure}}</p>
+          <p style="font-family: Montserrat;">Humidity {{boxweatherdata8.main.humidity}}</p>
+
+          <button class="btn" (click)="edit(8)" style="font-family: Montserrat;">Edit</button>
+        </div>
+      </div>
+      <div
+        style="background-image: url('../assets/mist.jpg');background-size:100%;height:250px;border-radius:10%;background-repeat: no-repeat;"
+        *ngIf="showTemp8 && boxweatherdata8.weather[0].main == 'Mist'">
+        <div style="margin-top:0px;background-color: rgba(255,255,255,0.7);border-radius: 0%;height: 250px;">
+
+          <h3 style="font-family:Montserrat;">{{box8}}</h3>
+
+
+          <p style="font-family: Montserrat;">{{boxweatherdata8.weather[0].main}}</p>
+          <p style="font-family: Montserrat;">Temperature {{boxweatherdata8.main.temp}}</p>
+          <p style="font-family: Montserrat;">Pressure {{boxweatherdata8.main.pressure}}</p>
+          <p style="font-family: Montserrat;">Humidity {{boxweatherdata8.main.humidity}}</p>
+
+          <button class="btn" (click)="edit(8)" style="font-family: Montserrat;">Edit</button>
+        </div>
+      </div>
+      <div
+        style="background-image: url('../assets/smoke.jpg');background-size:100%;height:250px;border-radius:10%;background-repeat: no-repeat;"
+        *ngIf="showTemp8 && boxweatherdata8.weather[0].main == 'Smoke'">
+        <div style="margin-top:0px;background-color: rgba(255,255,255,0.7);border-radius: 0%;height: 250px;">
+
+          <h3 style="font-family:Montserrat;">{{box8}}</h3>
+
+
+          <p style="font-family: Montserrat;"> {{boxweatherdata8.weather[0].main}}</p>
+          <p style="font-family: Montserrat;">Temperature {{boxweatherdata8.main.temp}}</p>
+          <p style="font-family: Montserrat;">Pressure {{boxweatherdata8.main.pressure}}</p>
+          <p style="font-family: Montserrat;">Humidity {{boxweatherdata8.main.humidity}}</p>
+
+          <button class="btn" (click)="edit(8)" style="font-family: Montserrat;">Edit</button>
+        </div>
+      </div>
+
+      <div
+        style="background-image: url('../assets/dust.jpg');background-size:100%;height:250px;border-radius:10%;background-repeat: no-repeat;"
+        *ngIf="showTemp8 && boxweatherdata8.weather[0].main == 'Dust'">
+        <div style="margin-top:0px;background-color: rgba(255,255,255,0.7);border-radius: 0%;height: 250px;">
+
+          <h3 style="font-family:Montserrat;">{{box8}}</h3>
+
+
+          <p style="font-family: Montserrat;">{{boxweatherdata8.weather[0].main}}</p>
+          <p style="font-family: Montserrat;">Temperature {{boxweatherdata8.main.temp}}</p>
+          <p style="font-family: Montserrat;">Pressure {{boxweatherdata8.main.pressure}}</p>
+          <p style="font-family: Montserrat;">Humidity {{boxweatherdata8.main.humidity}}</p>
+
+          <button class="btn" (click)="edit(8)" style="font-family: Montserrat;">Edit</button>
+        </div>
+      </div>
+      <div
+        style="background-image: url('../assets/fog.jpg');background-size:100%;height:250px;border-radius:10%;background-repeat: no-repeat;"
+        *ngIf="showTemp8 && boxweatherdata8.weather[0].main == 'Fog'">
+        <div style="margin-top:0px">
+
+          <h3 style="font-family:Montserrat;">{{box8}}</h3>
+
+
+          <p style="font-family: Montserrat;">Temperature {{boxweatherdata8.weather[0].main}}</p>
+          <p style="font-family: Montserrat;">Temperature {{boxweatherdata8.main.temp}}</p>
+          <p style="font-family: Montserrat;">Pressure {{boxweatherdata8.main.pressure}}</p>
+          <p style="font-family: Montserrat;">Humidity {{boxweatherdata8.main.humidity}}</p>
+
+          <button class="btn" (click)="edit(8)" style="font-family: Montserrat;">Edit</button>
+        </div>
+      </div>
+      <div
+        style="background-image: url('../assets/sand.jpg');background-size:100%;height:250px;border-radius:10%;background-repeat: no-repeat;"
+        *ngIf="showTemp8 && boxweatherdata8.weather[0].main == 'Sand'">
+        <div style="margin-top:0px;background-color: rgba(255,255,255,0.7);border-radius: 0%;height: 250px;">
+
+          <h3 style="font-family:Montserrat;">{{box8}}</h3>
+
+
+          <p style="font-family: Montserrat;"> {{boxweatherdata8.weather[0].main}}</p>
+          <p style="font-family: Montserrat;">Temperature {{boxweatherdata8.main.temp}}</p>
+          <p style="font-family: Montserrat;">Pressure {{boxweatherdata8.main.pressure}}</p>
+          <p style="font-family: Montserrat;">Humidity {{boxweatherdata8.main.humidity}}</p>
+
+          <button class="btn" (click)="edit(8)" style="font-family: Montserrat;">Edit</button>
+        </div>
+      </div>
+
+      <div
+        style="background-image: url('../assets/ash.jpg');background-size:100%;height:250px;border-radius:10%;background-repeat: no-repeat;"
+        *ngIf="showTemp8 && boxweatherdata8.weather[0].main == 'Ash'">
+        <div style="margin-top:0px;background-color: rgba(255,255,255,0.7);border-radius: 0%;height: 250px;">
+
+          <h3 style="font-family:Montserrat;">{{box8}}</h3>
+
+
+          <p style="font-family: Montserrat;">{{boxweatherdata8.weather[0].main}}</p>
+          <p style="font-family: Montserrat;">Temperature {{boxweatherdata8.main.temp}}</p>
+          <p style="font-family: Montserrat;">Pressure {{boxweatherdata8.main.pressure}}</p>
+          <p style="font-family: Montserrat;">Humidity {{boxweatherdata8.main.humidity}}</p>
+
+          <button class="btn" (click)="edit(8)" style="font-family: Montserrat;">Edit</button>
+        </div>
+      </div>
+
+      <div
+        style="background-image: url('../assets/squall.jpg');background-size:100%;height:250px;border-radius:10%;background-repeat: no-repeat;"
+        *ngIf="showTemp8 && boxweatherdata8.weather[0].main == 'Squall'">
+        <div style="margin-top:0px">
+
+
+          <h3 style="font-family:Montserrat;">{{box8}}</h3>
+
+
+          <p style="font-family: Montserrat;">{{boxweatherdata8.weather[0].main}}</p>
+          <p style="font-family: Montserrat;">Temperature {{boxweatherdata8.main.temp}}</p>
+          <p style="font-family: Montserrat;">Pressure {{boxweatherdata8.main.pressure}}</p>
+          <p style="font-family: Montserrat;">Humidity {{boxweatherdata8.main.humidity}}</p>
+
+          <button class="btn" (click)="edit(8)" style="font-family: Montserrat;">Edit</button>
+        </div>
+      </div>
+      <div
+        style="background-image: url('../assets/tornado.jpg');background-size:100%;height:250px;border-radius:10%;background-repeat: no-repeat;"
+        *ngIf="showTemp8 && boxweatherdata8.weather[0].main == 'Tornado'">
+        <div style="margin-top:0px;background-color: rgba(255,255,255,0.7);border-radius: 0%;height: 250px;">
+
+          <h3 style="font-family:Montserrat;">{{box8}}</h3>
+
+
+          <p style="font-family: Montserrat;"> {{boxweatherdata8.weather[0].main}}</p>
+          <p style="font-family: Montserrat;">Temperature {{boxweatherdata8.main.temp}}</p>
+          <p style="font-family: Montserrat;">Pressure {{boxweatherdata8.main.pressure}}</p>
+          <p style="font-family: Montserrat;">Humidity {{boxweatherdata8.main.humidity}}</p>
+
+          <button class="btn" (click)="edit(8)" style="font-family: Montserrat;">Edit</button>
+        </div>
+      </div>
+
+      <div
+        style="background-image: url('../assets/clear.jpg');background-size:100%;height:250px;border-radius:10%;background-repeat: no-repeat;"
+        *ngIf="showTemp8 && boxweatherdata8.weather[0].main == 'Clear'">
+        <div style="margin-top:0px;background-color: rgba(255,255,255,0.7);border-radius: 0%;height: 250px;">
+
+          <h3 style="font-family:Montserrat;">{{box8}}</h3>
+
+
+          <p style="font-family: Montserrat;"> {{boxweatherdata8.weather[0].main}}</p>
+          <p style="font-family: Montserrat;">Temperature {{boxweatherdata8.main.temp}}</p>
+          <p style="font-family: Montserrat;">Pressure {{boxweatherdata8.main.pressure}}</p>
+          <p style="font-family: Montserrat;">Humidity {{boxweatherdata8.main.humidity}}</p>
+
+          <button class="btn" (click)="edit(8)" style="font-family: Montserrat;">Edit</button>
+        </div>
+      </div>
+
+    </div>
+
+    <!--nine-->
+
+    <div class="col-xs-10 col-md-3 text-center" style="margin: 20px;padding: 0px;height:250px">
+      <img src="../assets/plus.png" style="width: 100px;margin-top: 60px;" (click)="openTextBox('9')" *ngIf="openPlus9">
+      <input type="text" placeholder="Enter city name" name="box9" [(ngModel)]="box9" (keyup.enter)="callApi('9')"
+        *ngIf="openTextBox9" style="width:80%;padding: 10px;margin:5px" />
+      <div
+        style="background-image: url('../assets/haze.jpg');background-size:100%;height:250px;background-repeat:no-repeat;border-radius: 0%;"
+        *ngIf="showTemp9 && boxweatherdata9.weather[0].main == 'Haze'">
+        <div style="margin-top:0px;background-color: rgba(255,255,255,0.5);border-radius: 0%;height: 250px;">
+          <h3 style="font-family:Montserrat;">{{box9}}</h3>
+
+
+          <p style="font-family: Montserrat;"> {{boxweatherdata9.weather[0].main}}</p>
+          <p style="font-family: Montserrat;">Temperature {{boxweatherdata9.main.temp}}</p>
+          <p style="font-family: Montserrat;">Pressure {{boxweatherdata9.main.pressure}}</p>
+          <p style="font-family: Montserrat;">Humidity {{boxweatherdata9.main.humidity}}</p>
+          <button class="btn" (click)="edit(9)" style="font-family: Montserrat;">Edit</button>
+        </div>
+      </div>
+      <div
+        style="background-image: url('../assets/clouds.jpg');background-size:100%;height:250px;border-radius:10%;background-repeat: no-repeat;"
+        *ngIf="showTemp9 && boxweatherdata9.weather[0].main == 'Clouds'">
+        <div style="margin-top:0px;background-color: rgba(255,255,255,0.7);border-radius: 0%;height: 250px;">
+
+          <h3 style="font-family:Montserrat;">{{box9}}</h3>
+
+
+          <p style="font-family: Montserrat;">{{boxweatherdata9.weather[0].main}}</p>
+          <p style="font-family: Montserrat;">Temperature {{boxweatherdata9.main.temp}}</p>
+          <p style="font-family: Montserrat;">Pressure {{boxweatherdata9.main.pressure}}</p>
+          <p style="font-family: Montserrat;">Humidity {{boxweatherdata9.main.humidity}}</p>
+
+          <button class="btn" (click)="edit(9)" style="font-family: Montserrat;">Edit</button>
+        </div>
+      </div>
+      <div
+        style="background-image: url('../assets/thunder.jpg');background-size:100%;height:250px;border-radius:10%;background-repeat: no-repeat;"
+        *ngIf="showTemp9 && boxweatherdata9.weather[0].main == 'Thunderstorm'">
+        <div style="margin-top:0px;background-color: rgba(255,255,255,0.7);border-radius: 0%;height: 250px;">
+
+          <h3 style="font-family:Montserrat;">{{box9}}</h3>
+
+
+          <p style="font-family: Montserrat;"> {{boxweatherdata9.weather[0].main}}</p>
+          <p style="font-family: Montserrat;">Temperature {{boxweatherdata9.main.temp}}</p>
+          <p style="font-family: Montserrat;">Pressure {{boxweatherdata9.main.pressure}}</p>
+          <p style="font-family: Montserrat;">Humidity {{boxweatherdata9.main.humidity}}</p>
+
+          <button class="btn" (click)="edit(9)" style="font-family: Montserrat;">Edit</button>
+        </div>
+      </div>
+      <div
+        style="background-image: url('../assets/drizzle.jpg');background-size:100%;height:250px;border-radius:10%;background-repeat: no-repeat;"
+        *ngIf="showTemp9 && boxweatherdata9.weather[0].main == 'Drizzle'">
+        <div style="margin-top:0px;background-color: rgba(255,255,255,0.7);border-radius: 0%;height: 250px;">
+
+          <h3 style="font-family:Montserrat;">{{box9}}</h3>
+
+
+          <p style="font-family: Montserrat;">{{boxweatherdata9.weather[0].main}}</p>
+          <p style="font-family: Montserrat;">Temperature {{boxweatherdata9.main.temp}}</p>
+          <p style="font-family: Montserrat;">Pressure {{boxweatherdata9.main.pressure}}</p>
+          <p style="font-family: Montserrat;">Humidity {{boxweatherdata9.main.humidity}}</p>
+
+          <button class="btn" (click)="edit(9)" style="font-family: Montserrat;">Edit</button>
+        </div>
+      </div>
+      <div
+        style="background-image: url('../assets/rain.jpeg');background-size:100%;height:250px;border-radius:10%;background-repeat: no-repeat;"
+        *ngIf="showTemp9 && boxweatherdata9.weather[0].main == 'Rain'">
+        <div style="margin-top:0px;background-color: rgba(255,255,255,0.7);border-radius: 0%;height: 250px;">
+
+          <h3 style="font-family:Montserrat;">{{box9}}</h3>
+
+
+          <p style="font-family: Montserrat;">{{boxweatherdata9.weather[0].main}}</p>
+          <p style="font-family: Montserrat;">Temperature {{boxweatherdata9.main.temp}}</p>
+          <p style="font-family: Montserrat;">Pressure {{boxweatherdata9.main.pressure}}</p>
+          <p style="font-family: Montserrat;">Humidity {{boxweatherdata9.main.humidity}}</p>
+
+          <button class="btn" (click)="edit(9)" style="font-family: Montserrat;">Edit</button>
+        </div>
+      </div>
+
+      <div
+        style="background-image: url('../assets/snow.jpg');background-size:100%;height:250px;border-radius:10%;background-repeat: no-repeat;"
+        *ngIf="showTemp9 && boxweatherdata9.weather[0].main == 'Snow'">
+        <div style="margin-top:0px;background-color: rgba(255,255,255,0.7);border-radius: 0%;height: 250px;">
+
+          <h3 style="font-family:Montserrat;">{{box9}}</h3>
+
+
+          <p style="font-family: Montserrat;">{{boxweatherdata9.weather[0].main}}</p>
+          <p style="font-family: Montserrat;">Temperature {{boxweatherdata9.main.temp}}</p>
+          <p style="font-family: Montserrat;">Pressure {{boxweatherdata9.main.pressure}}</p>
+          <p style="font-family: Montserrat;">Humidity {{boxweatherdata9.main.humidity}}</p>
+
+          <button class="btn" (click)="edit(9)" style="font-family: Montserrat;">Edit</button>
+        </div>
+      </div>
+      <div
+        style="background-image: url('../assets/mist.jpg');background-size:100%;height:250px;border-radius:10%;background-repeat: no-repeat;"
+        *ngIf="showTemp9 && boxweatherdata9.weather[0].main == 'Mist'">
+        <div style="margin-top:0px;background-color: rgba(255,255,255,0.7);border-radius: 0%;height: 250px;">
+
+          <h3 style="font-family:Montserrat;">{{box9}}</h3>
+
+
+          <p style="font-family: Montserrat;">{{boxweatherdata9.weather[0].main}}</p>
+          <p style="font-family: Montserrat;">Temperature {{boxweatherdata9.main.temp}}</p>
+          <p style="font-family: Montserrat;">Pressure {{boxweatherdata9.main.pressure}}</p>
+          <p style="font-family: Montserrat;">Humidity {{boxweatherdata9.main.humidity}}</p>
+
+          <button class="btn" (click)="edit(9)" style="font-family: Montserrat;">Edit</button>
+        </div>
+      </div>
+      <div
+        style="background-image: url('../assets/smoke.jpg');background-size:100%;height:250px;border-radius:10%;background-repeat: no-repeat;"
+        *ngIf="showTemp9 && boxweatherdata9.weather[0].main == 'Smoke'">
+        <div style="margin-top:0px;background-color: rgba(255,255,255,0.7);border-radius: 0%;height: 250px;">
+
+          <h3 style="font-family:Montserrat;">{{box9}}</h3>
+
+
+          <p style="font-family: Montserrat;"> {{boxweatherdata9.weather[0].main}}</p>
+          <p style="font-family: Montserrat;">Temperature {{boxweatherdata9.main.temp}}</p>
+          <p style="font-family: Montserrat;">Pressure {{boxweatherdata9.main.pressure}}</p>
+          <p style="font-family: Montserrat;">Humidity {{boxweatherdata9.main.humidity}}</p>
+
+          <button class="btn" (click)="edit(9)" style="font-family: Montserrat;">Edit</button>
+        </div>
+      </div>
+
+      <div
+        style="background-image: url('../assets/dust.jpg');background-size:100%;height:250px;border-radius:10%;background-repeat: no-repeat;"
+        *ngIf="showTemp9 && boxweatherdata9.weather[0].main == 'Dust'">
+        <div style="margin-top:0px;background-color: rgba(255,255,255,0.7);border-radius: 0%;height: 250px;">
+
+          <h3 style="font-family:Montserrat;">{{box9}}</h3>
+
+
+          <p style="font-family: Montserrat;">{{boxweatherdata9.weather[0].main}}</p>
+          <p style="font-family: Montserrat;">Temperature {{boxweatherdata9.main.temp}}</p>
+          <p style="font-family: Montserrat;">Pressure {{boxweatherdata9.main.pressure}}</p>
+          <p style="font-family: Montserrat;">Humidity {{boxweatherdata9.main.humidity}}</p>
+
+          <button class="btn" (click)="edit(9)" style="font-family: Montserrat;">Edit</button>
+        </div>
+      </div>
+      <div
+        style="background-image: url('../assets/fog.jpg');background-size:100%;height:250px;border-radius:10%;background-repeat: no-repeat;"
+        *ngIf="showTemp9 && boxweatherdata9.weather[0].main == 'Fog'">
+        <div style="margin-top:0px">
+
+          <h3 style="font-family:Montserrat;">{{box9}}</h3>
+
+
+          <p style="font-family: Montserrat;">Temperature {{boxweatherdata9.weather[0].main}}</p>
+          <p style="font-family: Montserrat;">Temperature {{boxweatherdata9.main.temp}}</p>
+          <p style="font-family: Montserrat;">Pressure {{boxweatherdata9.main.pressure}}</p>
+          <p style="font-family: Montserrat;">Humidity {{boxweatherdata9.main.humidity}}</p>
+
+          <button class="btn" (click)="edit(9)" style="font-family: Montserrat;">Edit</button>
+        </div>
+      </div>
+      <div
+        style="background-image: url('../assets/sand.jpg');background-size:100%;height:250px;border-radius:10%;background-repeat: no-repeat;"
+        *ngIf="showTemp9 && boxweatherdata9.weather[0].main == 'Sand'">
+        <div style="margin-top:0px;background-color: rgba(255,255,255,0.7);border-radius: 0%;height: 250px;">
+
+          <h3 style="font-family:Montserrat;">{{box9}}</h3>
+
+
+          <p style="font-family: Montserrat;"> {{boxweatherdata9.weather[0].main}}</p>
+          <p style="font-family: Montserrat;">Temperature {{boxweatherdata9.main.temp}}</p>
+          <p style="font-family: Montserrat;">Pressure {{boxweatherdata9.main.pressure}}</p>
+          <p style="font-family: Montserrat;">Humidity {{boxweatherdata9.main.humidity}}</p>
+
+          <button class="btn" (click)="edit(9)" style="font-family: Montserrat;">Edit</button>
+        </div>
+      </div>
+
+      <div
+        style="background-image: url('../assets/ash.jpg');background-size:100%;height:250px;border-radius:10%;background-repeat: no-repeat;"
+        *ngIf="showTemp9 && boxweatherdata9.weather[0].main == 'Ash'">
+        <div style="margin-top:0px;background-color: rgba(255,255,255,0.7);border-radius: 0%;height: 250px;">
+
+          <h3 style="font-family:Montserrat;">{{box9}}</h3>
+
+
+          <p style="font-family: Montserrat;">{{boxweatherdata9.weather[0].main}}</p>
+          <p style="font-family: Montserrat;">Temperature {{boxweatherdata9.main.temp}}</p>
+          <p style="font-family: Montserrat;">Pressure {{boxweatherdata9.main.pressure}}</p>
+          <p style="font-family: Montserrat;">Humidity {{boxweatherdata9.main.humidity}}</p>
+
+          <button class="btn" (click)="edit(9)" style="font-family: Montserrat;">Edit</button>
+        </div>
+      </div>
+
+      <div
+        style="background-image: url('../assets/squall.jpg');background-size:100%;height:250px;border-radius:10%;background-repeat: no-repeat;"
+        *ngIf="showTemp9 && boxweatherdata9.weather[0].main == 'Squall'">
+        <div style="margin-top:0px">
+
+
+          <h3 style="font-family:Montserrat;">{{box9}}</h3>
+
+
+          <p style="font-family: Montserrat;">{{boxweatherdata9.weather[0].main}}</p>
+          <p style="font-family: Montserrat;">Temperature {{boxweatherdata9.main.temp}}</p>
+          <p style="font-family: Montserrat;">Pressure {{boxweatherdata9.main.pressure}}</p>
+          <p style="font-family: Montserrat;">Humidity {{boxweatherdata9.main.humidity}}</p>
+
+          <button class="btn" (click)="edit(9)" style="font-family: Montserrat;">Edit</button>
+        </div>
+      </div>
+      <div
+        style="background-image: url('../assets/tornado.jpg');background-size:100%;height:250px;border-radius:10%;background-repeat: no-repeat;"
+        *ngIf="showTemp9 && boxweatherdata9.weather[0].main == 'Tornado'">
+        <div style="margin-top:0px;background-color: rgba(255,255,255,0.7);border-radius: 0%;height: 250px;">
+
+          <h3 style="font-family:Montserrat;">{{box9}}</h3>
+
+
+          <p style="font-family: Montserrat;"> {{boxweatherdata9.weather[0].main}}</p>
+          <p style="font-family: Montserrat;">Temperature {{boxweatherdata9.main.temp}}</p>
+          <p style="font-family: Montserrat;">Pressure {{boxweatherdata9.main.pressure}}</p>
+          <p style="font-family: Montserrat;">Humidity {{boxweatherdata9.main.humidity}}</p>
+
+          <button class="btn" (click)="edit(9)" style="font-family: Montserrat;">Edit</button>
+        </div>
+      </div>
+
+      <div
+        style="background-image: url('../assets/clear.jpg');background-size:100%;height:250px;border-radius:10%;background-repeat: no-repeat;"
+        *ngIf="showTemp9 && boxweatherdata9.weather[0].main == 'Clear'">
+        <div style="margin-top:0px;background-color: rgba(255,255,255,0.7);border-radius: 0%;height: 250px;">
+
+          <h3 style="font-family:Montserrat;">{{box9}}</h3>
+
+
+          <p style="font-family: Montserrat;"> {{boxweatherdata9.weather[0].main}}</p>
+          <p style="font-family: Montserrat;">Temperature {{boxweatherdata9.main.temp}}</p>
+          <p style="font-family: Montserrat;">Pressure {{boxweatherdata9.main.pressure}}</p>
+          <p style="font-family: Montserrat;">Humidity {{boxweatherdata9.main.humidity}}</p>
+
+          <button class="btn" (click)="edit(9)" style="font-family: Montserrat;">Edit</button>
+        </div>
+      </div>
+
+    </div>
+
+
+  </div>
+
+  <div class="row" style="background-color:rgba(255,255,255,0.8);margin-top: 30px;">
+    <div class="col-xs-12 text-center">
+      <p style="font-family: Montserrat;font-weight:200;">Designed by Immanuel VJ</p>
+    </div>
+  </div>
+
+</div>
