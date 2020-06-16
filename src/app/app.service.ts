@@ -30,7 +30,7 @@ export class AppService {
 
 
   public getWeather(data):Observable<any>{
-    return this.http.get(`http://api.openweathermap.org/data/2.5/weather?q=${data}&appid=3ba1a438394976e40b64c83eb94a1ae2`)
+    return this.http.get(`https://api.openweathermap.org/data/2.5/weather?q=${data}&appid=3ba1a438394976e40b64c83eb94a1ae2`)
   }  
 
 }

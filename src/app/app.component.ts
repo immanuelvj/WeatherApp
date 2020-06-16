@@ -139,6 +139,7 @@ export class AppComponent {
         this.Interval1()
         console.log(this.boxweatherdata1.weather[0].main)
       },(err)=>{
+        console.log(err)
         this.Toastr.customToastr(
           '<span style="color: red; font-size: 16px; text-align: center;font-family:Montserrat">No city found !</span>',
           null,
